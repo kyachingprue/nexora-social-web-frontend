@@ -17,7 +17,7 @@ export default function CreatePost() {
   const [value, setValue] = useState("");
 
   return (
-    <Card className="overflow-visible border border-gray-300 dark:border-gray-500 hover:shadow-lg shadow-blue-300 dark:shadow-cyan-700 dark:bg-black/40">
+    <Card className="overflow-visible border border-gray-300 dark:border-gray-500 dark:bg-black/40">
       <CardContent className="flex gap-3 p-4">
         <Avatar className="h-11 w-11 shrink-0">
           <AvatarImage src={currentUser.avatar} alt={currentUser.name} />

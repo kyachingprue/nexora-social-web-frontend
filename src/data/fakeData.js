@@ -95,6 +95,18 @@ export const users = [
     bio: 'Game dev @Nightowl Studio · roguelikes forever',
     followers: 2870,
     following: 540
+  },
+  {
+    id: 'u9',
+    name: 'Ethan Brooks',
+    handle: '@ethan.plays',
+    cover:
+      'https://i.ibb.co.com/HfbQSWjP/HD-wallpaper-anime-sunset-city-girl.jpg',
+    avatar: 'https://i.pravatar.cc/150?img=8',
+    verified: false,
+    bio: 'Game dev @Nightowl Studio · roguelikes forever',
+    followers: 2870,
+    following: 540
   }
 ]
 
@@ -108,7 +120,7 @@ export const currentUser = {
 
 const findUser = (id) => users.find((u) => u.id === id);
 
-export const stories = users.slice(0, 8).map((u, i) => ({
+export const stories = users.map((u, i) => ({
   id: `s${i + 1}`,
   user: u,
   viewed: i > 4,
@@ -116,110 +128,114 @@ export const stories = users.slice(0, 8).map((u, i) => ({
 
 export const posts = [
   {
-    id: "p1",
-    user: findUser("u2"),
-    createdAt: "2026-08-25T05:40:00Z",
-    text: "Golden hour on the Shibuya crossing never gets old. Third trip back to this exact corner this year.",
-    image: "https://picsum.photos/seed/tokyo-street/1000/750",
-    location: "Shibuya, Tokyo",
+    id: 'p1',
+    user: findUser('u2'),
+    createdAt: '2026-08-25T05:40:00Z',
+    text: 'Golden hour on the Shibuya crossing never gets old. Third trip back to this exact corner this year.',
+    image: 'https://i.ibb.co.com/PsfHMwpJ/images.jpg',
+    location: 'Shibuya, Tokyo',
     likes: 2431,
     comments: 128,
     shares: 64,
     likedByMe: false,
-    savedByMe: false,
+    savedByMe: false
   },
   {
-    id: "p2",
-    user: findUser("u3"),
-    createdAt: "2026-08-25T02:10:00Z",
-    text: "20-minute miso brown butter pasta. Recipe drop tomorrow — tell me what you want to see next 👇",
-    image: "https://picsum.photos/seed/miso-pasta/1000/750",
+    id: 'p2',
+    user: findUser('u3'),
+    createdAt: '2026-08-25T02:10:00Z',
+    text: '20-minute miso brown butter pasta. Recipe drop tomorrow — tell me what you want to see next 👇',
+    image:
+      'https://i.ibb.co.com/T6f8pxS/Statue-of-Liberty-Island-New-York-Bay.jpg',
     location: null,
     likes: 891,
     comments: 76,
     shares: 22,
     likedByMe: true,
-    savedByMe: true,
+    savedByMe: true
   },
   {
-    id: "p3",
-    user: findUser("u5"),
-    createdAt: "2026-08-24T19:05:00Z",
-    text: "Woke up at 4am for this. Worth every second. Patagonia, you beautiful thing.",
-    image: "https://picsum.photos/seed/patagonia-sunrise/1000/750",
-    location: "Torres del Paine, Chile",
+    id: 'p3',
+    user: findUser('u5'),
+    createdAt: '2026-08-24T19:05:00Z',
+    text: 'Woke up at 4am for this. Worth every second. Patagonia, you beautiful thing.',
+    image: 'https://i.ibb.co.com/B2Jkjv0j/105223874-gettyimages-1027264824.jpg',
+    location: 'Torres del Paine, Chile',
     likes: 15234,
     comments: 502,
     shares: 340,
     likedByMe: false,
-    savedByMe: false,
+    savedByMe: false
   },
   {
-    id: "p4",
-    user: findUser("u7"),
-    createdAt: "2026-08-24T14:22:00Z",
-    text: "Page 12 of the space-cat zine is finally done. Ink and gouache, six hours, zero regrets.",
-    image: "https://picsum.photos/seed/space-cat-art/1000/1250",
+    id: 'p4',
+    user: findUser('u7'),
+    createdAt: '2026-08-24T14:22:00Z',
+    text: 'Page 12 of the space-cat zine is finally done. Ink and gouache, six hours, zero regrets.',
+    image: 'https://i.ibb.co.com/0RqVcCPx/images-1.jpg',
     location: null,
     likes: 4102,
     comments: 214,
     shares: 88,
     likedByMe: true,
-    savedByMe: false,
+    savedByMe: false
   },
   {
-    id: "p5",
-    user: findUser("u4"),
-    createdAt: "2026-08-24T09:00:00Z",
-    text: "18 miles done before 7am. Marathon taper starts next week and I already miss the long runs.",
-    image: "https://picsum.photos/seed/morning-run/1000/750",
-    location: "Riverside Park",
+    id: 'p5',
+    user: findUser('u4'),
+    createdAt: '2026-08-24T09:00:00Z',
+    text: '18 miles done before 7am. Marathon taper starts next week and I already miss the long runs.',
+    image:
+      'https://i.ibb.co.com/6RhB9Rbk/pngtree-sunset-over-city-of-charlotte-nc-north-carolina-buildings-nc-photo-image-12845226.jpg',
+    location: 'Riverside Park',
     likes: 673,
     comments: 41,
     shares: 9,
     likedByMe: false,
-    savedByMe: false,
+    savedByMe: false
   },
   {
-    id: "p6",
-    user: findUser("u6"),
-    createdAt: "2026-08-23T21:15:00Z",
-    text: "Shipped v2 of my habit tracker this weekend — rebuilt the sync engine from scratch. Small team, big relief.",
-    image: "https://picsum.photos/seed/build-desk-setup/1000/750",
+    id: 'p6',
+    user: findUser('u6'),
+    createdAt: '2026-08-23T21:15:00Z',
+    text: 'Shipped v2 of my habit tracker this weekend — rebuilt the sync engine from scratch. Small team, big relief.',
+    image:
+      'https://i.ibb.co.com/zWVnHCjk/Modus-july22-sydneyoperahouse-landscape-header.jpg',
     location: null,
     likes: 512,
     comments: 63,
     shares: 47,
     likedByMe: false,
-    savedByMe: true,
+    savedByMe: true
   },
   {
-    id: "p7",
-    user: findUser("u1"),
-    createdAt: "2026-08-23T16:40:00Z",
-    text: "Redesigned our onboarding flow to remove 3 steps entirely. Sometimes the best UI decision is deleting UI.",
-    image: "https://picsum.photos/seed/design-workspace/1000/750",
+    id: 'p7',
+    user: findUser('u1'),
+    createdAt: '2026-08-23T16:40:00Z',
+    text: 'Redesigned our onboarding flow to remove 3 steps entirely. Sometimes the best UI decision is deleting UI.',
+    image:
+      'https://i.ibb.co.com/7NJmMbZM/national-flag-canada-with-mountain-forest-jasper-national-park-summer-landscape-lac-beauver-363815-4.avif',
     location: null,
     likes: 1988,
     comments: 156,
     shares: 210,
     likedByMe: false,
-    savedByMe: false,
+    savedByMe: false
   },
   {
-    id: "p8",
-    user: findUser("u8"),
-    createdAt: "2026-08-23T11:05:00Z",
-    text: "New boss fight is finally readable in motion. Six months of iteration for four seconds of combat.",
-    image: "https://picsum.photos/seed/pixel-game-art/1000/750",
+    id: 'p8',
+    user: findUser('u8'),
+    createdAt: '2026-08-23T11:05:00Z',
+    text: 'New boss fight is finally readable in motion. Six months of iteration for four seconds of combat.',
+    image: 'https://i.ibb.co.com/gMdC2n5b/i-Stock-2164012534.avif',
     location: null,
     likes: 3305,
     comments: 189,
     shares: 71,
     likedByMe: true,
-    savedByMe: false,
-  },
-];
+    savedByMe: false
+  }
+]
 
 export const commentsByPost = {
   p1: [
