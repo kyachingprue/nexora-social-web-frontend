@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router'
-import Layout from './components/Layout'
 import Home from './pages/Home'
 import Explore from './pages/Explore'
 import Notifications from './pages/Notifications'
@@ -7,6 +6,7 @@ import Messages from './pages/Messages'
 import Profile from './pages/Profile'
 import Saved from './pages/Saved'
 import Settings from './pages/Settings'
+import Layout from './layouts/MainLayout'
 
 
 export default function App() {

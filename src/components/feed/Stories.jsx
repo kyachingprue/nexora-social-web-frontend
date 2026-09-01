@@ -1,8 +1,8 @@
 import { motion } from 'motion/react'
 import { Plus } from 'lucide-react'
 import { useRef, useState } from 'react'
-import { currentUser, stories } from '../data/fakeData'
-import { cn } from '../lib/utils'
+import { currentUser, stories } from '../../data/fakeData'
+import { cn } from '../../lib/utils'
 
 export default function Stories() {
   const scrollRef = useRef(null)

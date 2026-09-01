@@ -38,7 +38,7 @@ export default function Profile() {
       {/* COVER + PROFILE HEADER */}
       <div className="relative">
         {/* Cover Photo */}
-        <div className="relative h-44 overflow-hidden rounded-xl bg-linear-to-br from-violet-600 via-purple-600 to-indigo-600 sm:h-56 lg:h-80">
+        <div className="relative h-44 overflow-hidden rounded-xl bg-linear-to-br from-violet-600 via-purple-600 to-indigo-600 sm:h-60 lg:h-80">
           <img
             src={profileUser.cover}
             alt={`${profileUser.name} cover`}

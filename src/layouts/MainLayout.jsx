@@ -1,19 +1,19 @@
-import { Outlet, useLocation } from "react-router";
-import { AnimatePresence, motion } from "motion/react";
-import Navbar from "./Navbar";
-import Sidebar from "./Sidebar";
-import RightSidebar from "./RightSidebar";
-import MobileTabBar from "./MobileTabBar";
+import { Outlet, useLocation } from 'react-router'
+import { AnimatePresence, motion } from 'motion/react'
+import Navbar from '../components/navbar/Navbar'
+import Sidebar from '../components/sidebar/Sidebar'
+import RightSidebar from '../components/rightSidebar/RightSidebar'
+import MobileTabBar from '../components/sidebar/MobileTabBar'
 
 
 export default function Layout() {
-  const location = useLocation();
+  const location = useLocation()
 
   return (
     <div className="min-h-screen mx-auto max-w-3xl md:max-w-5xl lg:max-w-7xl dark:bg-linear-to-br from-cyan-950 to-black">
       <Navbar />
 
-      <div className="container flex gap-3 md:gap-5 py-6">
+      <div className="container mx-auto flex gap-3 md:gap-5 py-6">
         <Sidebar />
 
         <main className="min-w-0 flex-1 pb-20 lg:pb-6 px-2">

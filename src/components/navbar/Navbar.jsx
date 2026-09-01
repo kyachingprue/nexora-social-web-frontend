@@ -1,9 +1,9 @@
 import { Link, useNavigate } from "react-router";
 import { Bell, MessageCircle, Search } from "lucide-react";
-import socialIcon from "../assets/social-media-logo.png"
+import socialIcon from "../../assets/social-media-logo.png";
 import ThemeToggle from "./ThemeToggle";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { currentUser, notifications } from "../data/fakeData";
+import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
+import { currentUser, notifications } from "../../data/fakeData";
 
 
 export default function Navbar() {

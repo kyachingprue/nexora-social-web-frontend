@@ -1,32 +1,25 @@
-import { Bell, Lock, Palette, User } from "lucide-react";
+import { Bell, Lock, Palette, User } from 'lucide-react'
 
-import { useTheme } from "../context/ThemeContext";
-import ThemeToggle from "../components/ThemeToggle";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-
+import { useTheme } from '../context/ThemeContext'
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
+import ThemeToggle from '../components/navbar/ThemeToggle'
 
 export default function Settings() {
-  const { theme } = useTheme();
+  const { theme } = useTheme()
 
   return (
     <div className="flex flex-col gap-4">
       {/* PAGE TITLE */}
-      <h1
-        className="font-display text-2xl font-bold text-gray-900 dark:text-white">
+      <h1 className="font-display text-2xl font-bold text-gray-900 dark:text-white">
         Settings
       </h1>
 
       {/*  APPEARANCE */}
-      <Card
-        className="border border-gray-200 bg-white text-gray-900 shadow-sm dark:border-gray-800 dark:bg-gray-950 dark:text-white"
-      >
+      <Card className="border border-gray-200 bg-white text-gray-900 shadow-sm dark:border-gray-800 dark:bg-gray-950 dark:text-white">
         <CardHeader className="flex-row items-center gap-2 space-y-0">
-          <Palette
-            size={18}
-            className="text-violet-600 dark:text-violet-400"/>
+          <Palette size={18} className="text-violet-600 dark:text-violet-400" />
 
-          <CardTitle className="text-base text-gray-900 dark:text-white"
-          >
+          <CardTitle className="text-base text-gray-900 dark:text-white">
             Appearance
           </CardTitle>
         </CardHeader>
@@ -49,9 +42,7 @@ export default function Settings() {
       {/*  NOTIFICATIONS */}
       <Card className="border border-gray-200 bg-white text-gray-900 shadow-sm dark:border-gray-800 dark:bg-gray-950 dark:text-white">
         <CardHeader className="flex-row items-center gap-2 space-y-0">
-          <Bell
-            size={18}
-            className="text-violet-600 dark:text-violet-400"/>
+          <Bell size={18} className="text-violet-600 dark:text-violet-400" />
 
           <CardTitle className="text-base text-gray-900 dark:text-white">
             Notifications
@@ -67,7 +58,8 @@ export default function Settings() {
           ].map(label => (
             <label
               key={label}
-              className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-300">
+              className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-300"
+            >
               {label}
 
               <input
@@ -247,13 +239,15 @@ export default function Settings() {
 
           <button
             type="button"
-            className="text-left text-gray-700 transition-colors hover:text-violet-600 dark:text-gray-300 dark:hover:text-violet-400">
+            className="text-left text-gray-700 transition-colors hover:text-violet-600 dark:text-gray-300 dark:hover:text-violet-400"
+          >
             Download your data
           </button>
 
           <button
             type="button"
-            className="text-left text-red-600 transition-opacity hover:opacity-70 dark:text-red-400">
+            className="text-left text-red-600 transition-opacity hover:opacity-70 dark:text-red-400"
+          >
             Deactivate account
           </button>
         </CardContent>

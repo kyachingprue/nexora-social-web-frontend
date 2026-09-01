@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Image, Smile, MapPin, ListVideo } from "lucide-react";
-import { Card, CardContent } from "../ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { currentUser } from "../data/fakeData";
-import { Button } from "../ui/button";
+import { Card, CardContent } from "../../ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
+import { currentUser } from "../../data/fakeData";
+import { Button } from "../../ui/button";
 
 
 const actions = [

@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { motion } from "motion/react";
-import { Heart, MessageCircle } from "lucide-react";
-import { posts, trending } from "../data/fakeData";
-import { formatCount } from "../lib/utils";
+import { useState } from 'react'
+import { motion } from 'motion/react'
+import { Heart, MessageCircle } from 'lucide-react'
+import { posts, trending } from '../data/fakeData'
+import { formatCount } from '../lib/utils'
 
 export default function Explore() {
-  const [active, setActive] = useState("all");
-  const tabs = ["all", ...trending.map((t) => t.tag)];
+  const [active, setActive] = useState('all')
+  const tabs = ['all', ...trending.map(t => t.tag)]
 
   return (
     <div className="flex flex-col gap-5">
@@ -30,8 +30,8 @@ export default function Explore() {
             onClick={() => setActive(tab)}
             className={`shrink-0 rounded-full border px-4 py-2 text-sm font-medium capitalize transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500
            ${
-            active === tab
-              ? `
+             active === tab
+               ? `
                 border-transparent
                 bg-linear-to-r
                 from-violet-600
@@ -42,7 +42,7 @@ export default function Explore() {
                 dark:from-violet-500
                 dark:to-indigo-500
               `
-              : `
+               : `
                 border-gray-200
                 text-gray-500
 
@@ -55,7 +55,7 @@ export default function Explore() {
                 dark:hover:bg-gray-800
                 dark:hover:text-white
               `
-          }
+           }
         `}
           >
             {tab}
@@ -78,7 +78,8 @@ export default function Explore() {
               duration: 0.3,
               delay: (i % 9) * 0.03
             }}
-            className={`group relative overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800 ${i % 7 === 0 ? 'row-span-2' : ''}`}>
+            className={`group relative overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800 ${i % 7 === 0 ? 'row-span-2' : ''}`}
+          >
             {/* Post Image */}
             <img
               src={post.image}
@@ -96,8 +97,7 @@ export default function Explore() {
                 {formatCount(post.likes)}
               </span>
 
-              <span className="flex items-center gap-1.5 font-semibold text-white"
-              >
+              <span className="flex items-center gap-1.5 font-semibold text-white">
                 <MessageCircle size={18} className="fill-white" />
 
                 {formatCount(post.comments)}

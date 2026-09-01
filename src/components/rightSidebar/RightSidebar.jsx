@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { TrendingUp } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { suggestions, trending } from "../data/fakeData";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { VerifiedBadge } from "../ui/verified-badge";
-import { formatCount } from "../lib/utils";
-import { Button } from "../ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card";
+import { suggestions, trending } from "../../data/fakeData";
+import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
+import { VerifiedBadge } from "../../ui/verified-badge";
+import { formatCount } from "../../lib/utils";
+import { Button } from "../../ui/button";
 
 
 export default function RightSidebar() {

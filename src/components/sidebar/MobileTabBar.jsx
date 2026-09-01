@@ -1,13 +1,13 @@
 import { NavLink } from "react-router";
-import { Home, Compass, PlusCircle, Bell, User } from "lucide-react";
-import { cn } from "../lib/utils";
+import { Home, Compass, PlusCircle, Settings, User } from "lucide-react";
+import { cn } from "../../lib/utils";
 
 
 const links = [
   { to: "/", icon: Home, end: true },
   { to: "/explore", icon: Compass },
   { to: "/", icon: PlusCircle, isCta: true },
-  { to: "/notifications", icon: Bell },
+  { to: "/settings", icon: Settings },
   { to: "/profile", icon: User },
 ];
 

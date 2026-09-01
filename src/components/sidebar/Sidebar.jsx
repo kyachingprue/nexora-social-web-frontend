@@ -9,9 +9,9 @@ import {
   Settings,
   PlusCircle,
 } from "lucide-react";
-import { cn } from "../lib/utils";
-import { Button } from "../ui/button";
-import { currentUser } from "../data/fakeData";
+import { cn } from "../../lib/utils";
+import { Button } from "../../ui/button";
+import { currentUser } from "../../data/fakeData";
 
 
 const links = [
@@ -34,14 +34,17 @@ export default function Sidebar() {
             to={to}
             end={to === '/'}
             className={({ isActive }) =>
-              cn(`group flex items-center gap-3.5 rounded-xl px-4 py-3 text-[15px]
+              cn(
+                `group flex items-center gap-3.5 rounded-xl px-4 py-3 text-[15px]
               font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500`,
-                isActive ? `bg-violet-100 text-violet-600 dark:bg-mauve-600 dark:text-violet-200`: `
+                isActive
+                  ? `bg-violet-200 text-violet-600 dark:bg-blue-700 dark:text-violet-200`
+                  : `
                 text-gray-600
-                hover:bg-gray-100
+                hover:bg-gray-200
                 hover:text-gray-950
                 dark:text-gray-400
-                dark:hover:bg-gray-700
+                dark:hover:bg-blue-800
                 dark:hover:text-white
               `
               )
@@ -51,14 +54,15 @@ export default function Sidebar() {
               <>
                 <Icon
                   size={21}
-                  className={cn(`shrink-0
+                  className={cn(
+                    `shrink-0
                   transition-transform
                   duration-200
                   group-hover:scale-110
                 `,
                     isActive
-                      ? 'text-violet-600 dark:text-violet-400'
-                      : 'text-gray-500 dark:text-gray-500'
+                      ? 'text-violet-600 dark:text-white '
+                      : 'text-gray-500 dark:text-gray-400 '
                   )}
                 />
 
@@ -72,24 +76,23 @@ export default function Sidebar() {
         <NavLink
           to="/settings"
           className={({ isActive }) =>
-            cn(`group flex items-center gap-3.5 rounded-xl px-4 py-3 text-[15px] font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500
+            cn(
+              `group flex items-center gap-3.5 rounded-xl px-4 py-3 text-[15px] font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500
           `,
               isActive
                 ? `
-              bg-violet-50
+              bg-violet-200
               text-violet-600
 
-              dark:bg-violet-950/50
-              dark:text-violet-400
+              dark:bg-blue-700
+              dark:text-violet-200
             `
                 : `
               text-gray-600
-
-              hover:bg-gray-100
+              hover:bg-gray-200
               hover:text-gray-950
-
               dark:text-gray-400
-              dark:hover:bg-gray-800
+              dark:hover:bg-blue-800
               dark:hover:text-white
             `
             )
@@ -97,7 +100,8 @@ export default function Sidebar() {
         >
           <Settings
             size={21}
-            className="shrink-0 transition-transform duration-200 group-hover:scale-110"/>
+            className="shrink-0 transition-transform duration-200 group-hover:scale-110"
+          />
 
           <span>Settings</span>
         </NavLink>
@@ -109,7 +113,8 @@ export default function Sidebar() {
         <Button
           variant="gradient"
           size="lg"
-          className="w-full shadow-lg shadow-violet-500/20">
+          className="w-full shadow-lg shadow-violet-500/20"
+        >
           <PlusCircle size={18} />
           New post
         </Button>
@@ -122,15 +127,15 @@ export default function Sidebar() {
           <img
             src={currentUser.avatar}
             alt={currentUser.name}
-            className="h-10 w-10 shrink-0 rounded-full object-cover ring-2 ring-violet-200 transition-all duration-200 group-hover:ring-violet-500 dark:ring-violet-900 dark:group-hover:ring-violet-400"/>
+            className="h-10 w-10 shrink-0 rounded-full object-cover ring-2 ring-violet-200 transition-all duration-200 group-hover:ring-violet-500 dark:ring-violet-900 dark:group-hover:ring-violet-400"
+          />
 
           <div className="min-w-0">
             <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">
               {currentUser.name}
             </p>
 
-            <p className="truncate text-xs text-gray-500 dark:text-gray-400"
-            >
+            <p className="truncate text-xs text-gray-500 dark:text-gray-400">
               {currentUser.handle}
             </p>
           </div>

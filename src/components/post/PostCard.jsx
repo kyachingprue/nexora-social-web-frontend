@@ -12,11 +12,12 @@ import {
   Send,
 } from "lucide-react";
 import { FaFacebook, FaTwitter } from 'react-icons/fa6'
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { VerifiedBadge } from "../ui/verified-badge";
-import { cn, formatCount, timeAgo } from "../lib/utils";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
+import { VerifiedBadge } from "../../ui/verified-badge";
+import { cn, formatCount, timeAgo } from "../../lib/utils";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../../ui/dropdown-menu";
 import CommentDialog from "./CommentDialog";
+
 
 
 export default function PostCard({ post }) {

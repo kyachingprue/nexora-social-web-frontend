@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Send } from "lucide-react";
-import { commentsByPost, currentUser } from "../data/fakeData";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { VerifiedBadge } from "../ui/verified-badge";
-import { timeAgo } from "../lib/utils";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../../ui/dialog";
+import { VerifiedBadge } from "../../ui/verified-badge";
+import { timeAgo } from "../../lib/utils";
+import { commentsByPost, currentUser } from "../../data/fakeData";
+import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
 
 
 export default function CommentDialog({ post, open, onOpenChange }) {

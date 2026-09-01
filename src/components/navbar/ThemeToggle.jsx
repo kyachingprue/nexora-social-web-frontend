@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'motion/react'
 import { Moon, Sun } from 'lucide-react'
-import { useTheme } from '../context/ThemeContext'
+import { useTheme } from '../../context/ThemeContext'
 
 export default function ThemeToggle({ className = '' }) {
   const { theme, toggleTheme } = useTheme()

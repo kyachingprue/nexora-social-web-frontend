@@ -1,4 +1,4 @@
-import PostCard from "../components/PostCard";
+import PostCard from "../components/post/PostCard";
 import { posts } from "../data/fakeData";
 
 
