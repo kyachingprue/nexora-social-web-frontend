@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { motion } from 'motion/react'
 import { Heart, MessageCircle } from 'lucide-react'
-import { posts, trending } from '../data/fakeData'
-import { formatCount } from '../lib/utils'
+import { posts, trending } from '../../data/fakeData'
+import { formatCount } from '../../lib/utils'
+
 
 export default function Explore() {
   const [active, setActive] = useState('all')

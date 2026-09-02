@@ -1,5 +1,5 @@
-import PostCard from "../components/post/PostCard";
-import { posts } from "../data/fakeData";
+import PostCard from "../../components/post/PostCard";
+import { posts } from "../../data/fakeData";
 
 
 export default function Saved() {

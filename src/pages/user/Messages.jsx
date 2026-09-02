@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Send, Phone, Video, Info } from "lucide-react";
-import { currentUser, users } from "../data/fakeData";
-import { cn } from "../lib/utils";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { VerifiedBadge } from "../ui/verified-badge";
+import { currentUser, users } from "../../data/fakeData";
+import { cn } from "../../lib/utils";
+import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
+import { VerifiedBadge } from "../../ui/verified-badge";
 
 
 const threads = users.slice(0, 6).map((u, i) => ({

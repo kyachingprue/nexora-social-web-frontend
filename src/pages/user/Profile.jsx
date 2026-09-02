@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { motion } from "motion/react";
 import { CalendarDays, Link as LinkIcon, MapPin, Settings } from "lucide-react";
-import { currentUser, posts, users } from "../data/fakeData";
-import { VerifiedBadge } from "../ui/verified-badge";
-import { Button } from "../ui/button";
+import { currentUser, posts, users } from "../../data/fakeData";
+import { VerifiedBadge } from "../../ui/verified-badge";
+import { Button } from "../../ui/button";
 
 
 const profileUser = { ...users[0], ...currentUser, bio: "Building Pulse's frontend, one component at a time. Coffee-powered.", verified: true };

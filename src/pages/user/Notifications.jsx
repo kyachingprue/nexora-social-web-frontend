@@ -1,8 +1,8 @@
 import { motion } from "motion/react";
-import { notifications } from "../data/fakeData";
-import { cn, timeAgo } from "../lib/utils";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { VerifiedBadge } from "../ui/verified-badge";
+import { notifications } from "../../data/fakeData";
+import { cn, timeAgo } from "../../lib/utils";
+import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
+import { VerifiedBadge } from "../../ui/verified-badge";
 
 
 export default function Notifications() {

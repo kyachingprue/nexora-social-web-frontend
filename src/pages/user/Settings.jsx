@@ -1,8 +1,8 @@
 import { Bell, Lock, Palette, User } from 'lucide-react'
 
-import { useTheme } from '../context/ThemeContext'
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
-import ThemeToggle from '../components/navbar/ThemeToggle'
+import { useTheme } from '../../context/ThemeContext'
+import { Card, CardContent, CardHeader, CardTitle } from '../../ui/card'
+import ThemeToggle from '../../components/navbar/ThemeToggle'
 
 export default function Settings() {
   const { theme } = useTheme()
