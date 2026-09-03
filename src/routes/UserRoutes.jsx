@@ -19,12 +19,12 @@ const UserRoutes = () => {
         {/* Default user route */}
         <Route
           path="/"
-          element={<Navigate to="/home" replace />}
+          element={<Navigate to="/" replace />}
         />
 
         {/* Home */}
         <Route
-          path="/home"
+          path="/"
           element={<Home />}
         />
 

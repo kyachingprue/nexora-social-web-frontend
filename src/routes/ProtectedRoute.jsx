@@ -1,10 +1,10 @@
 
-import { Navigate, Outlet, useLocation } from "react-router";
+import { Navigate, useLocation } from "react-router";
 import { LoaderCircle } from "lucide-react";
 
 import useAuth from "../hooks/useAuth";
 
-const ProtectedRoute = () => {
+const ProtectedRoute = ({children}) => {
   const { user, loading } = useAuth();
   const location = useLocation();
 
@@ -54,7 +54,7 @@ const ProtectedRoute = () => {
   // ================================
   // User is authenticated
   // ================================
-  return <Outlet />;
+  return children;
 };
 
 export default ProtectedRoute;

@@ -35,7 +35,7 @@ const PublicRoute = () => {
 
   // Already logged in → redirect to home
   if (user) {
-    return <Navigate to="/home" replace />;
+    return <Navigate to="/" replace />;
   }
 
   // Not logged in → allow public routes

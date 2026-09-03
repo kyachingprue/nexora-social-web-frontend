@@ -4,10 +4,13 @@ import socialIcon from "../../assets/social-media-logo.png";
 import ThemeToggle from "./ThemeToggle";
 import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
 import { currentUser, notifications } from "../../data/fakeData";
+import useAuthData from "../../hooks/useAuthData";
 
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const { user } = useAuthData();
+  console.log("user data",user)
   const unread = notifications.filter((n) => !n.read).length;
 
   return (

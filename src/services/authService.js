@@ -4,7 +4,7 @@ import api from './api'
 
 const authService = {
   register: async userData => {
-    const response = await api.post('/auth/register', userData)
+    const response = await api.post('/api/auth/register', userData)
     return response.data
   },
 
@@ -24,7 +24,7 @@ const authService = {
   },
 
   getCurrentUser: async () => {
-    const response = await api.get('/apiauth/me')
+    const response = await api.get('/api/auth/me')
     return response.data
   },
 

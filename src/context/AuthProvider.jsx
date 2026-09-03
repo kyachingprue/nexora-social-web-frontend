@@ -23,33 +23,30 @@ const AuthProvider = ({ children }) => {
   // Get current backend authenticated user
   // --------------------------------------------------
 
-  const getCurrentUser = useCallback(async () => {
-    try {
-      const response = await api.get('/api/auth/me')
+ const getCurrentUser = useCallback(async () => {
+   try {
+     const response = await authService.getCurrentUser()
 
-      const currentUser = response.data?.data?.user ?? response.data?.data
+     console.log('👤 CURRENT USER RESPONSE:', response)
 
-      setUser(currentUser)
+     const currentUser =
+       response?.data?.user ?? response?.data ?? response?.user
 
-      return currentUser
-    } catch (error) {
-      const status = error.response?.status
+     console.log('✅ CURRENT USER:', currentUser)
 
-      // 401 means there is currently no authenticated session.
-      if (status === 401) {
-        setUser(null)
-        return null
-      }
+     setUser(currentUser)
 
-      console.error(
-        'Get current user error:',
-        error.response?.data || error.message
-      )
+     return currentUser
+   } catch (error) {
+     console.error(
+       'Get current user error:',
+       error.response?.data || error.message
+     )
 
-      setUser(null)
-      return null
-    }
-  }, [])
+     setUser(null)
+     return null
+   }
+ }, [])
 
   // --------------------------------------------------
   // Register

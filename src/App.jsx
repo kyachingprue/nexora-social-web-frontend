@@ -1,5 +1,6 @@
-import { Routes, Route, Navigate } from "react-router";
+import { Routes, Route, Navigate } from "react-router-dom";
 import PublicRoute from "./routes/PublicRoute";
+
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import VerifyEmail from "./pages/auth/VerifyEmail";
@@ -7,19 +8,19 @@ import ForgotPassword from "./pages/auth/ForgetPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import MainLayout from "./layouts/MainLayout";
-import Home from "./pages/user/Home";
 import Explore from "./pages/user/Explore";
 import Notifications from "./pages/user/Notifications";
 import Messages from "./pages/user/Messages";
 import Profile from "./pages/user/Profile";
 import Saved from "./pages/user/Saved";
 import Settings from "./pages/user/Settings";
-
+import Home from "./pages/user/Home";
 
 export default function App() {
   return (
     <Routes>
       {/* ==================== PUBLIC ROUTES ==================== */}
+
       <Route element={<PublicRoute />}>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -29,8 +30,10 @@ export default function App() {
       </Route>
 
       {/* ==================== PROTECTED USER ROUTES ==================== */}
+
       <Route element={<ProtectedRoute />}>
         <Route element={<MainLayout />}>
+          <Route path="/" element={<Navigate to="/home" replace />} />
           <Route path="/home" element={<Home />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/notifications" element={<Notifications />} />
@@ -41,18 +44,9 @@ export default function App() {
         </Route>
       </Route>
 
-      {/* ==================== DEFAULT ROUTE ==================== */}
-      <Route
-        path="/"
-        element={<Navigate to="/login" replace />}
-      />
+      {/* ==================== 404 ==================== */}
 
-      {/* ==================== 404 / UNKNOWN ROUTES ==================== */}
-      <Route
-        path="*"
-        element={<Navigate to="/login" replace />}
-      />
+      <Route path="*" element={<Navigate to="/home" replace />} />
     </Routes>
-  );
+  )
 }
-
