@@ -6,7 +6,7 @@ import './index.css'
 import { ThemeProvider } from './context/ThemeContext.jsx'
 import AuthProvider from './context/AuthProvider.jsx'
 import { Provider } from "react-redux";
-import store from './store/middleware.js'
+import store from './store/store.js'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

@@ -6,7 +6,7 @@ import {
   signInWithPopup,
   signOut as firebaseSignOut,
 } from "firebase/auth";
-
+import authService from '../services/authService'
 import auth from "../firebase/firebase.config.js";
 import api from "../services/api";
 import AuthContext from "./AuthContext";
@@ -87,24 +87,21 @@ const AuthProvider = ({ children }) => {
   // Login
   // --------------------------------------------------
 
-  const login = async (credentials) => {
+  const login = async credentials => {
     try {
-      const response = await api.post("/api/auth/login", credentials);
+      const response = await authService.login(credentials)
 
-     const loggedInUser = response.data?.data?.user ?? response.data?.data
+      const loggedInUser = response.data?.user ?? response.data
 
-      setUser(loggedInUser);
+      setUser(loggedInUser)
 
-      return response.data;
+      return response
     } catch (error) {
-      console.error(
-        "Login error:",
-        error.response?.data || error.message
-      );
+      console.error('Login error:', error.response?.data || error.message)
 
-      throw error;
+      throw error
     }
-  };
+  }
 
   // --------------------------------------------------
   // Google Login
@@ -125,12 +122,9 @@ const AuthProvider = ({ children }) => {
         await firebaseUser.getIdToken();
 
       // 3. Send Firebase token to backend
-      const response = await api.post(
-        "/api/auth/google",
-        {
-          idToken: firebaseToken,
-        }
-      );
+      const response = await api.post('/api/auth/google', {
+        idToken: firebaseToken
+      })
 
       const loggedInUser =
         response.data?.user ?? response.data;
@@ -153,10 +147,7 @@ const AuthProvider = ({ children }) => {
   // --------------------------------------------------
 
   const verifyEmail = async (verificationData) => {
-    const response = await api.post(
-      "/api/auth/verify-email",
-      verificationData
-    );
+    const response = await api.post('/api/auth/verify-email', verificationData)
 
     return response.data;
   };
@@ -166,10 +157,7 @@ const AuthProvider = ({ children }) => {
   // --------------------------------------------------
 
   const resendVerificationEmail = async (email) => {
-    const response = await api.post(
-      "/api/auth/resend-verification",
-      { email }
-    );
+    const response = await api.post('/api/auth/resend-verification', { email })
 
     return response.data;
   };
@@ -179,10 +167,7 @@ const AuthProvider = ({ children }) => {
   // --------------------------------------------------
 
   const forgotPassword = async (email) => {
-    const response = await api.post(
-      "/api/auth/forgot-password",
-      { email }
-    );
+    const response = await api.post('/api/auth/forgot-password', { email })
 
     return response.data;
   };
@@ -192,10 +177,7 @@ const AuthProvider = ({ children }) => {
   // --------------------------------------------------
 
   const resetPassword = async (resetData) => {
-    const response = await api.post(
-      "/api/auth/reset-password",
-      resetData
-    );
+    const response = await api.post('/api/auth/reset-password', resetData)
 
     return response.data;
   };
@@ -205,9 +187,7 @@ const AuthProvider = ({ children }) => {
   // --------------------------------------------------
 
   const refreshToken = async () => {
-    const response = await api.post(
-      "/api/auth/refresh-token"
-    );
+    const response = await api.post('/api/auth/refresh-token')
 
     return response.data;
   };
@@ -219,7 +199,7 @@ const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       // Backend logout
-      await api.post("/api/auth/logout");
+      await api.post('/api/auth/logout')
     } catch (error) {
       console.error(
         "Backend logout error:",
@@ -277,7 +257,6 @@ const AuthProvider = ({ children }) => {
     login,
     googleLogin,
     logout,
-
     verifyEmail,
     resendVerificationEmail,
 

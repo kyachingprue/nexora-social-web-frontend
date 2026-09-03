@@ -1,11 +1,8 @@
-
+import { useDispatch } from 'react-redux'
 
 const useAppDispatch = () => {
-  return (
-    <div>
-      <h1 className="text-2xl font-bold">App Dispatch Hook</h1>
-    </div>
-  );
-};
+  return useDispatch()
+}
 
-export default useAppDispatch;
+export default useAppDispatch
+

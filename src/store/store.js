@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import authReducer from '../features/auth/authSlice'
-import usersReducer from '../features/users/usersSlice'
-import postsReducer from '../features/posts/postsSlice'
-import messagesReducer from '../features/messages/messagesSlice'
-import notificationsReducer from '../features/notifications/notificationsSlice'
-
-import middleware from './middleware'
+import usersReducer from '../features/users/userSlice'
+import postsReducer from '../features/posts/postSlice'
+import messagesReducer from '../features/messages/messageSlice'
+import notificationsReducer from '../features/notification/notificationSlice'
+import commentsReducer from '../features/comments/commentSlice'
+import followsReducer from '../features/follows/followSlice'
 
 export const store = configureStore({
   reducer: {
@@ -14,13 +14,15 @@ export const store = configureStore({
     users: usersReducer,
     posts: postsReducer,
     messages: messagesReducer,
-    notifications: notificationsReducer
+    notifications: notificationsReducer,
+    comments: commentsReducer,
+    follows: followsReducer
   },
 
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: false
-    }).concat(middleware),
+    }),
 
   devTools: import.meta.env.MODE !== 'production'
 })

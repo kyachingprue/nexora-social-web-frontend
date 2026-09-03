@@ -45,37 +45,48 @@ const Register = () => {
   })
 
   const password = watch('password')
-
   // --------------------------------------------------
   // Register with email & password
   // --------------------------------------------------
 
-  const onSubmit = async data => {
-    try {
-      setServerError('')
 
-      const response = await registerUser({
-        name: data.name.trim(),
-        username: data.username.trim().toLowerCase(),
-        email: data.email.trim().toLowerCase(),
-        password: data.password,
-        confirmPassword: data.confirmPassword
-      })
+const onSubmit = async data => {
+  try {
+    setServerError('')
 
-      console.log('Registration successful:', response)
+    const email = data.email.trim().toLowerCase()
 
-      navigate('/login')
-    } catch (error) {
-      console.error('Registration failed:', error)
+    const response = await registerUser({
+      name: data.name.trim(),
+      username: data.username.trim().toLowerCase(),
+      email,
+      password: data.password,
+      confirmPassword: data.confirmPassword
+    })
 
-      const message =
-        error?.response?.data?.message ||
-        error?.response?.data?.error ||
-        'Registration failed. Please try again.'
+    console.log('Registration successful:', response)
 
-      setServerError(message)
-    }
+    // Registration successful হলে সরাসরি
+    // email verification page-এ পাঠাবে।
+    navigate('/verify-email', {
+      replace: true,
+      state: {
+        email
+      }
+    })
+  } catch (error) {
+    console.error('Registration failed:', error)
+
+    const message =
+      error?.response?.data?.message ||
+      error?.response?.data?.error ||
+      'Registration failed. Please try again.'
+
+    setServerError(message)
   }
+}
+
+
 
   // --------------------------------------------------
   // Google signup
