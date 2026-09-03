@@ -1,12 +1,8 @@
-import {
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+
 import {
   GoogleAuthProvider,
-  onAuthStateChanged,
   signInWithPopup,
   signOut as firebaseSignOut,
 } from "firebase/auth";
@@ -14,7 +10,6 @@ import {
 import auth from "../firebase/firebase.config.js";
 import api from "../services/api";
 import AuthContext from "./AuthContext";
-
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -25,47 +20,90 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   // --------------------------------------------------
-  // Get current authenticated user
+  // Get current backend authenticated user
   // --------------------------------------------------
 
   const getCurrentUser = useCallback(async () => {
     try {
-      const response = await api.get("/auth/me");
+      const response = await api.get('/api/auth/me')
 
-      setUser(response.data?.user ?? response.data);
+      const currentUser = response.data?.data?.user ?? response.data?.data
 
-      return response.data?.user ?? response.data;
+      setUser(currentUser)
+
+      return currentUser
     } catch (error) {
-      console.log(error)
-      setUser(null);
-      return null;
+      const status = error.response?.status
+
+      // 401 means there is currently no authenticated session.
+      if (status === 401) {
+        setUser(null)
+        return null
+      }
+
+      console.error(
+        'Get current user error:',
+        error.response?.data || error.message
+      )
+
+      setUser(null)
+      return null
     }
-  }, []);
+  }, [])
 
   // --------------------------------------------------
   // Register
   // --------------------------------------------------
 
-  const register = async (userData) => {
+  const register = async userData => {
+    try {
+      console.log('REGISTER DATA:', userData)
 
-    const response = await api.post("/auth/register", userData);
+      const response = await api.post('/api/auth/register', userData)
 
-    return response.data;
-  };
+      console.log('REGISTER RESPONSE:', response.data)
+
+      return response.data
+    } catch (error) {
+      console.error('REGISTER STATUS:', error.response?.status)
+
+      console.error(
+        'REGISTER RESPONSE:',
+        JSON.stringify(error.response?.data, null, 2)
+      )
+
+      console.error(
+        'VALIDATION ERRORS:',
+        JSON.stringify(error.response?.data?.errors, null, 2)
+      )
+
+      console.error('REGISTER MESSAGE:', error.message)
+
+      throw error
+    }
+  }
 
   // --------------------------------------------------
   // Login
   // --------------------------------------------------
 
   const login = async (credentials) => {
+    try {
+      const response = await api.post("/api/auth/login", credentials);
 
-    const response = await api.post("/auth/login", credentials);
+     const loggedInUser = response.data?.data?.user ?? response.data?.data
 
-    const loggedInUser = response.data?.user ?? response.data;
+      setUser(loggedInUser);
 
-    setUser(loggedInUser);
+      return response.data;
+    } catch (error) {
+      console.error(
+        "Login error:",
+        error.response?.data || error.message
+      );
 
-    return response.data;
+      throw error;
+    }
   };
 
   // --------------------------------------------------
@@ -73,34 +111,50 @@ const AuthProvider = ({ children }) => {
   // --------------------------------------------------
 
   const googleLogin = async () => {
-    // 1. Login with Google through Firebase
-    const result = await signInWithPopup(auth, googleProvider)
+    try {
+      // 1. Firebase Google login
+      const result = await signInWithPopup(
+        auth,
+        googleProvider
+      );
 
-    const firebaseUser = result.user
+      const firebaseUser = result.user;
 
-    // 2. Get Firebase ID token
-    const firebaseToken = await firebaseUser.getIdToken()
+      // 2. Get Firebase ID token
+      const firebaseToken =
+        await firebaseUser.getIdToken();
 
-    // 3. Send Firebase token to Express backend
-    const response = await api.post('/auth/google', {
-      idToken: firebaseToken
-    })
+      // 3. Send Firebase token to backend
+      const response = await api.post(
+        "/api/auth/google",
+        {
+          idToken: firebaseToken,
+        }
+      );
 
-    const loggedInUser = response.data?.user ?? response.data
+      const loggedInUser =
+        response.data?.user ?? response.data;
 
-    setUser(loggedInUser)
+      setUser(loggedInUser);
 
-    return response.data
-  }
+      return response.data;
+    } catch (error) {
+      console.error(
+        "Google login error:",
+        error.response?.data || error.message
+      );
+
+      throw error;
+    }
+  };
 
   // --------------------------------------------------
   // Verify Email
   // --------------------------------------------------
 
   const verifyEmail = async (verificationData) => {
-
     const response = await api.post(
-      "/auth/verify-email",
+      "/api/auth/verify-email",
       verificationData
     );
 
@@ -108,13 +162,14 @@ const AuthProvider = ({ children }) => {
   };
 
   // --------------------------------------------------
-  // Resend Verification Email
+  // Resend Verification
   // --------------------------------------------------
 
   const resendVerificationEmail = async (email) => {
-    const response = await api.post("/auth/resend-verification", {
-      email,
-    });
+    const response = await api.post(
+      "/api/auth/resend-verification",
+      { email }
+    );
 
     return response.data;
   };
@@ -124,9 +179,10 @@ const AuthProvider = ({ children }) => {
   // --------------------------------------------------
 
   const forgotPassword = async (email) => {
-    const response = await api.post("/auth/forgot-password", {
-      email,
-    });
+    const response = await api.post(
+      "/api/auth/forgot-password",
+      { email }
+    );
 
     return response.data;
   };
@@ -136,9 +192,8 @@ const AuthProvider = ({ children }) => {
   // --------------------------------------------------
 
   const resetPassword = async (resetData) => {
-
     const response = await api.post(
-      "/auth/reset-password",
+      "/api/auth/reset-password",
       resetData
     );
 
@@ -146,11 +201,13 @@ const AuthProvider = ({ children }) => {
   };
 
   // --------------------------------------------------
-  // Refresh JWT
+  // Refresh Token
   // --------------------------------------------------
 
   const refreshToken = async () => {
-    const response = await api.post("/auth/refresh-token");
+    const response = await api.post(
+      "/api/auth/refresh-token"
+    );
 
     return response.data;
   };
@@ -161,14 +218,22 @@ const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      // Logout from backend
-      await api.post("/auth/logout");
+      // Backend logout
+      await api.post("/api/auth/logout");
+    } catch (error) {
+      console.error(
+        "Backend logout error:",
+        error.response?.data || error.message
+      );
     } finally {
-      // Also logout Firebase if Google authentication was used
+      // Firebase logout
       try {
         await firebaseSignOut(auth);
-      } catch {
-        // Firebase logout is optional
+      } catch (error) {
+        console.error(
+          "Firebase logout error:",
+          error.response?.data || error.message
+        );
       }
 
       setUser(null);
@@ -177,7 +242,7 @@ const AuthProvider = ({ children }) => {
   };
 
   // --------------------------------------------------
-  // Restore authentication when app starts
+  // Initialize backend authentication
   // --------------------------------------------------
 
   useEffect(() => {
@@ -201,60 +266,24 @@ const AuthProvider = ({ children }) => {
   }, [getCurrentUser]);
 
   // --------------------------------------------------
-  // Firebase auth state listener
-  // --------------------------------------------------
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async firebaseUser => {
-      try {
-        if (!firebaseUser) {
-          setUser(null)
-          return
-        }
-
-        const response = await api.get('/auth/me')
-
-        const backendUser = response.data?.user ?? response.data
-
-        setUser(backendUser)
-
-      } catch (error) {
-        /*
-          Backend rejected the JWT or the session is invalid.
-        */
-        console.log('Backend rejected the JWT or the session is invalid.', error)
-
-        setUser(null)
-
-        // Optional: Firebase session also clear করা
-        try {
-          await firebaseSignOut(auth)
-        } catch {
-          // Ignore Firebase sign-out error
-        }
-      } finally {
-        setLoading(false)
-      }
-    })
-
-    return () => unsubscribe()
-  }, [])
-
-  // --------------------------------------------------
-  // Context value
+  // Context
   // --------------------------------------------------
 
   const authInfo = {
     user,
     loading,
+
     register,
     login,
     googleLogin,
     logout,
+
     verifyEmail,
     resendVerificationEmail,
+
     forgotPassword,
     resetPassword,
+
     refreshToken,
     getCurrentUser,
   };

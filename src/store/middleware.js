@@ -1,11 +1,18 @@
+const middleware = store => next => action => {
+  // Development environment এ Redux action দেখতে
+  if (import.meta.env.DEV) {
+    console.log('Redux Action:', action.type)
+  }
 
+  // Action execute করা
+  const result = next(action)
 
-const middleware = () => {
-  return (
-    <div>
-      <h1 className="text-2xl font-bold">Middleware</h1>
-    </div>
-  );
-};
+  // State update হওয়ার পর
+  if (import.meta.env.DEV) {
+    console.log('Redux State:', store.getState())
+  }
 
-export default middleware;
+  return result
+}
+
+export default middleware

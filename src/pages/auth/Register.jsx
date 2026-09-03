@@ -58,21 +58,12 @@ const Register = () => {
         name: data.name.trim(),
         username: data.username.trim().toLowerCase(),
         email: data.email.trim().toLowerCase(),
-        password: data.password
+        password: data.password,
+        confirmPassword: data.confirmPassword
       })
-
-      /*
-        Backend response example:
-
-        {
-          message: "Registration successful",
-          user: {...}
-        }
-      */
 
       console.log('Registration successful:', response)
 
-      // Change this if your backend requires email verification.
       navigate('/login')
     } catch (error) {
       console.error('Registration failed:', error)
