@@ -259,14 +259,11 @@ const ResetPassword = () => {
       await resetPassword({
         email: normalizedEmail,
         code: verificationCode,
-        password
+        newPassword: password
       })
 
-      setSuccessMessage(
-        'Your password has been reset successfully!'
-      )
+      setSuccessMessage('Your password has been reset successfully!')
 
-      // Redirect to login
       setTimeout(() => {
         navigate('/login', {
           replace: true,
@@ -277,10 +274,7 @@ const ResetPassword = () => {
         })
       }, 1500)
     } catch (error) {
-      console.error(
-        'Reset password failed:',
-        error
-      )
+      console.error('Reset password failed:', error)
 
       const message =
         error?.response?.data?.message ||

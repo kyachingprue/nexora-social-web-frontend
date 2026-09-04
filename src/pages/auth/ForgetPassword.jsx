@@ -14,7 +14,7 @@ import useAuth from '../../hooks/useAuth'
 const ForgetPassword = () => {
   const navigate = useNavigate()
 
-  const { forgotPassword } = useAuth()
+  const { forgetPassword } = useAuth()
 
   const [email, setEmail] = useState('')
 
@@ -48,7 +48,7 @@ const ForgetPassword = () => {
       setServerError('')
       setSuccessMessage('')
 
-      await forgotPassword(normalizedEmail)
+      await forgetPassword(normalizedEmail)
 
       setSuccessMessage(
         'Password reset instructions have been sent to your email.'
@@ -211,7 +211,7 @@ const ForgetPassword = () => {
                 </p>
 
                 <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                  Forgot password?
+                  Forget password?
                 </h2>
 
                 <p className="mt-3 text-sm leading-6 text-slate-500 dark:text-slate-400">

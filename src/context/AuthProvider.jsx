@@ -28,7 +28,12 @@ const AuthProvider = ({ children }) => {
 
      console.log('👤 CURRENT USER RESPONSE:', response)
 
-     const currentUser = response?.data?.data
+     const currentUser =
+       response?.data?.user ??
+       response?.data?.data?.user ??
+       response?.user ??
+       response?.data?.data ??
+       response?.data
 
      console.log('✅ CURRENT USER:', currentUser)
 
@@ -43,11 +48,10 @@ const AuthProvider = ({ children }) => {
    } catch (error) {
      console.error(
        'Get current user error:',
-       error.response?.data || error.message
+       error?.response?.data || error?.message
      )
 
      setUser(null)
-
      return null
    }
  }, [])
@@ -171,8 +175,8 @@ const AuthProvider = ({ children }) => {
   // Forgot Password
   // --------------------------------------------------
 
-  const forgotPassword = async (email) => {
-    const response = await api.post('/api/auth/forgot-password', { email })
+  const forgetPassword = async (email) => {
+    const response = await api.post('/api/auth/forget-password', { email })
 
     return response.data;
   };
@@ -181,11 +185,25 @@ const AuthProvider = ({ children }) => {
   // Reset Password
   // --------------------------------------------------
 
-  const resetPassword = async (resetData) => {
-    const response = await api.post('/api/auth/reset-password', resetData)
+  const resetPassword = async resetData => {
+    try {
+      console.log('🔐 RESET DATA:', {
+        email: resetData?.email,
+        code: resetData?.code,
+        hasNewPassword: Boolean(resetData?.newPassword)
+      })
 
-    return response.data;
-  };
+      const response = await api.post('/api/auth/reset-password', resetData)
+
+      console.log('✅ RESET RESPONSE:', response.data)
+
+      return response.data
+    } catch (error) {
+      console.error('❌ RESET ERROR:', error.response?.data || error.message)
+
+      throw error
+    }
+  }
 
   // --------------------------------------------------
   // Refresh Token
@@ -223,24 +241,13 @@ const AuthProvider = ({ children }) => {
   // --------------------------------------------------
 
   useEffect(() => {
-    let mounted = true;
-
     const initializeAuth = async () => {
-      try {
-        await getCurrentUser();
-      } finally {
-        if (mounted) {
-          setLoading(false);
-        }
-      }
-    };
+      await getCurrentUser()
+      setLoading(false)
+    }
 
-    initializeAuth();
-
-    return () => {
-      mounted = false;
-    };
-  }, [getCurrentUser]);
+    initializeAuth()
+  }, [getCurrentUser])
 
   // --------------------------------------------------
   // Context
@@ -255,7 +262,7 @@ const AuthProvider = ({ children }) => {
     logout,
     verifyEmail,
     resendVerificationEmail,
-    forgotPassword,
+    forgetPassword,
     resetPassword,
     refreshToken,
     getCurrentUser,
