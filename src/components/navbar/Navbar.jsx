@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Bell, MessageCircle, Search } from "lucide-react";
+import { Bell, MessageCircle, Search, LayoutDashboard } from 'lucide-react'
 import socialIcon from "../../assets/social-media-logo.png";
 import ThemeToggle from "./ThemeToggle";
 import { Avatar, AvatarFallback } from "../../ui/avatar";
@@ -49,6 +49,20 @@ export default function Navbar() {
         </div>
 
         <div className="ml-auto flex items-center gap-1.5 sm:gap-3">
+          
+          {/* Admin Dashboard */}
+          {user?.role === 'ADMIN' && (
+            <button
+              type="button"
+              onClick={() => navigate('/admin/dashboard')}
+              className="grid h-10 w-10 place-items-center rounded-full text-gray-600 transition-all duration-200 hover:bg-violet-100 hover:text-violet-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 dark:text-gray-400 dark:hover:bg-violet-500/10 dark:hover:text-violet-400"
+              aria-label="Admin Dashboard"
+              title="Admin Dashboard"
+            >
+              <LayoutDashboard size={20} strokeWidth={1.8} />
+            </button>
+          )}
+
           {/* Messages */}
           <button
             type="button"

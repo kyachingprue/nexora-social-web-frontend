@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { NavLink, Outlet, useLocation } from "react-router";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 import {
   LayoutDashboard,
   Users,
@@ -18,9 +18,8 @@ import {
   PanelLeftClose,
   PanelLeftOpen,
 } from "lucide-react";
-
-import { useAuth } from "../hooks/useAuth";
-import ThemeToggle from "../components/ThemeToggle";
+import ThemeToggle from "../components/navbar/ThemeToggle";
+import useAuth from "../hooks/useAuth";
 
 const menuItems = [
   {
@@ -138,7 +137,7 @@ const AdminLayout = () => {
           dark:bg-gray-900
           lg:block
 
-          ${desktopSidebarCollapsed ? "w-[82px]" : "w-64"}
+          ${desktopSidebarCollapsed ? "w-20.5" : "w-64"}
         `}
       >
         {/* Logo */}
@@ -327,7 +326,7 @@ const AdminLayout = () => {
           top-0
           z-50
           h-screen
-          w-[280px]
+          w-70
           border-r
           border-gray-200
           bg-white
@@ -433,7 +432,7 @@ const AdminLayout = () => {
           min-h-screen
           transition-all
           duration-300
-          ${desktopSidebarCollapsed ? "lg:pl-[82px]" : "lg:pl-64"}
+          ${desktopSidebarCollapsed ? "lg:pl-20.5" : "lg:pl-64"}
         `}
       >
         {/* ===================================================
@@ -598,11 +597,11 @@ const AdminLayout = () => {
 
                   {/* Admin information */}
                   <div className="hidden text-left md:block">
-                    <p className="max-w-[120px] truncate text-sm font-semibold">
+                    <p className="max-w-30 truncate text-sm font-semibold">
                       {user?.name || "Admin"}
                     </p>
 
-                    <p className="max-w-[120px] truncate text-xs text-gray-500 dark:text-gray-400">
+                    <p className="max-w-30 truncate text-xs text-gray-500 dark:text-gray-400">
                       {user?.role || "Administrator"}
                     </p>
                   </div>
@@ -692,7 +691,7 @@ const AdminLayout = () => {
                       {/* Dropdown actions */}
                       <div className="p-2">
                         <NavLink
-                          to="/admin/profile"
+                          to="/profile"
                           onClick={() =>
                             setProfileOpen(false)
                           }

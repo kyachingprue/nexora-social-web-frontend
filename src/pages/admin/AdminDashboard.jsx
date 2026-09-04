@@ -14,14 +14,12 @@ import {
   MessageCircle,
   MoreHorizontal,
   Plus,
-  Search,
   ShieldAlert,
   Sparkles,
   TrendingUp,
   UserCheck,
   UserPlus,
   Users,
-  UserX
 } from 'lucide-react'
 
 /* =========================================================
@@ -275,7 +273,7 @@ const AdminDashboard = () => {
           PAGE CONTAINER
       ===================================================== */}
 
-      <div className="mx-auto max-w-[1600px] px-4 py-6 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1600px] px-4 py-6 sm:px-6 lg:px-8 overflow-x-hidden">
 
         {/* =====================================================
             HEADER
@@ -330,7 +328,7 @@ const AdminDashboard = () => {
                   hover:border-indigo-300
                   hover:text-indigo-600
                   dark:border-white/10
-                  dark:bg-white/[0.04]
+                  dark:bg-white/40
                   dark:hover:border-indigo-500/40
                   dark:hover:text-indigo-400
                   sm:flex
@@ -382,7 +380,7 @@ const AdminDashboard = () => {
                   transition
                   hover:text-indigo-600
                   dark:border-white/10
-                  dark:bg-white/[0.04]
+                  dark:bg-white/40
                   dark:text-slate-300
                   dark:hover:text-indigo-400
                 "
