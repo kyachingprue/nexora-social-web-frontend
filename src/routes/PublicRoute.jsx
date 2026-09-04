@@ -1,7 +1,5 @@
-
-import { Navigate, Outlet } from "react-router";
+import { Navigate, Outlet } from "react-router-dom";
 import { LoaderCircle } from "lucide-react";
-
 import useAuth from "../hooks/useAuth";
 
 const PublicRoute = () => {

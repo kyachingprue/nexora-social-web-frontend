@@ -1,15 +1,15 @@
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 import { Bell, MessageCircle, Search } from "lucide-react";
 import socialIcon from "../../assets/social-media-logo.png";
 import ThemeToggle from "./ThemeToggle";
-import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
-import { currentUser, notifications } from "../../data/fakeData";
-import useAuthData from "../../hooks/useAuthData";
+import { Avatar, AvatarFallback } from "../../ui/avatar";
+import { notifications } from "../../data/fakeData";
+import useAuth from "../../hooks/useAuth";
 
 
 export default function Navbar() {
   const navigate = useNavigate();
-  const { user } = useAuthData();
+  const { user } = useAuth();
   console.log("user data",user)
   const unread = notifications.filter((n) => !n.read).length;
 
@@ -19,7 +19,8 @@ export default function Navbar() {
         {/* Logo */}
         <Link
           to="/"
-          className="flex shrink-0 items-center gap-2 transition-opacity">
+          className="flex shrink-0 items-center gap-2 transition-opacity"
+        >
           <span className="grid h-9 w-9 place-items-center overflow-hidden rounded-xl bg-linear-to-br from-violet-500 to-indigo-500 shadow-lg shadow-violet-500/20">
             <img
               src={socialIcon}
@@ -37,12 +38,14 @@ export default function Navbar() {
         <div className="relative hidden max-w-md flex-1 md:flex">
           <Search
             size={17}
-            className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500"/>
+            className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500"
+          />
 
           <input
             type="text"
             placeholder="Search people, tags, posts..."
-            className="w-full rounded-full border border-gray-200 bg-gray-50 py-2.5 pl-10 pr-4 text-sm text-gray-900 outline-none transition-all placeholder:text-gray-400 hover:border-gray-300 focus:border-violet-500 focus:bg-white focus:ring-2 focus:ring-violet-500/10 dark:border-gray-800 dark:bg-gray-900 dark:text-white dark:placeholder:text-gray-500 dark:hover:border-gray-700 dark:focus:border-violet-400 dark:focus:bg-gray-900 dark:focus:ring-violet-400/10"/>
+            className="w-full rounded-full border border-gray-200 bg-gray-50 py-2.5 pl-10 pr-4 text-sm text-gray-900 outline-none transition-all placeholder:text-gray-400 hover:border-gray-300 focus:border-violet-500 focus:bg-white focus:ring-2 focus:ring-violet-500/10 dark:border-gray-800 dark:bg-gray-900 dark:text-white dark:placeholder:text-gray-500 dark:hover:border-gray-700 dark:focus:border-violet-400 dark:focus:bg-gray-900 dark:focus:ring-violet-400/10"
+          />
         </div>
 
         <div className="ml-auto flex items-center gap-1.5 sm:gap-3">
@@ -66,7 +69,7 @@ export default function Navbar() {
             <Bell size={20} strokeWidth={1.8} />
 
             {unread > 0 && (
-              <span className="absolute right-1.5 top-1.5 h-2.5 w-2.5 rounded-full bg-violet-500 ring-2 ring-white dark:bg-violet-400 dark:ring-gray-950"/>
+              <span className="absolute right-1.5 top-1.5 h-2.5 w-2.5 rounded-full bg-violet-500 ring-2 ring-white dark:bg-violet-400 dark:ring-gray-950" />
             )}
           </button>
 
@@ -79,7 +82,16 @@ export default function Navbar() {
             aria-label="Open profile"
           >
             <Avatar className="h-9 w-9 ring-2 ring-gray-200 transition-all duration-200 hover:ring-violet-500 dark:ring-gray-700 dark:hover:ring-violet-400">
-              <AvatarImage src={currentUser.avatar} alt={currentUser.name} />
+              <img
+                src={
+                  user?.avatar ||
+                  `https://ui-avatars.com/api/?name=${encodeURIComponent(
+                    user?.name
+                  )}&background=0ea5e9&color=fff&size=256`
+                }
+                alt={user?.name}
+                className="h-full w-full rounded-full object-cover dark:bg-gray-950"
+              />
 
               <AvatarFallback className="bg-gray-100 text-gray-700 font-semibold dark:bg-gray-800 dark:text-gray-200">
                 YU

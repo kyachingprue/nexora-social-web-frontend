@@ -1,37 +1,27 @@
-import { useEffect, useRef, useState } from "react";
-import { gsap } from "gsap";
+import { useState } from "react";
 import { motion } from "motion/react";
 import { CalendarDays, Link as LinkIcon, MapPin, Settings } from "lucide-react";
-import { currentUser, posts, users } from "../../data/fakeData";
+import { posts } from '../../data/fakeData'
+import useAuth from '../../hooks/useAuth'
 import { VerifiedBadge } from "../../ui/verified-badge";
 import { Button } from "../../ui/button";
 
 
-const profileUser = { ...users[0], ...currentUser, bio: "Building Pulse's frontend, one component at a time. Coffee-powered.", verified: true };
-const stats = [
-  { label: "Posts", value: 128 },
-  { label: "Followers", value: 18400 },
-  { label: "Following", value: 312 },
-];
-
 export default function Profile() {
   const [tab, setTab] = useState("posts");
-  const statsRef = useRef([]);
+  const { user, loading } = useAuth()
 
-  useEffect(() => {
-    statsRef.current.forEach((el, i) => {
-      const obj = { val: 0 };
-      gsap.to(obj, {
-        val: stats[i].value,
-        duration: 1.4,
-        ease: "power2.out",
-        delay: 0.1,
-        onUpdate: () => {
-          if (el) el.textContent = Math.floor(obj.val).toLocaleString();
-        },
-      });
-    });
-  }, []);
+  if (loading) {
+    return (
+      <div className="flex min-h-75 items-center justify-center">
+        Loading profile...
+      </div>
+    )
+  }
+
+  if (!user) {
+    return null
+  }
 
   return (
     <div className="flex flex-col gap-5">
@@ -40,8 +30,11 @@ export default function Profile() {
         {/* Cover Photo */}
         <div className="relative h-44 overflow-hidden rounded-xl bg-linear-to-br from-violet-600 via-purple-600 to-indigo-600 sm:h-60 lg:h-80">
           <img
-            src={profileUser.cover}
-            alt={`${profileUser.name} cover`}
+            src={
+              user?.coverImage ||
+              'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1600&q=80'
+            }
+            alt={`${user?.name} cover`}
             className="h-full w-full object-cover"
           />
 
@@ -50,7 +43,7 @@ export default function Profile() {
         </div>
 
         {/* PROFILE INFO */}
-        <div className="relative z-10 -mt-14 flex flex-col gap-4 px-4 sm:-mt-16 sm:flex-row sm:items-end sm:justify-between">
+        <div className="relative z-10 -mt-14 flex flex-col gap-4 px-4 sm:-mt-10 sm:flex-row sm:items-end sm:justify-between">
           {/* Avatar + User Info */}
           <div className="flex flex-col items-start gap-3  sm:flex-row sm:items-end">
             {/* Profile Photo */}
@@ -58,8 +51,13 @@ export default function Profile() {
               {/* Profile image with gradient border in dark mode */}
               <div className="h-28 w-28 rounded-full border border-white bg-white p-0.75 shadow-lg dark:border dark:bg-linear-to-br dark:from-cyan-300 dark:via-blue-300 dark:to-fuchsia-300">
                 <img
-                  src={profileUser.avatar}
-                  alt={profileUser.name}
+                  src={
+                    user?.avatar ||
+                    `https://ui-avatars.com/api/?name=${encodeURIComponent(
+                      user?.name
+                    )}&background=0ea5e9&color=fff&size=256`
+                  }
+                  alt={user?.name}
                   className="h-full w-full rounded-full object-cover dark:bg-gray-950"
                 />
               </div>
@@ -72,17 +70,14 @@ export default function Profile() {
             <div className="pb-1 pl-1 sm:pl-0">
               <div className="flex items-center gap-1.5">
                 <h1 className="font-display text-xl font-bold text-gray-900 dark:text-white">
-                  {profileUser.name}
+                  {user?.name}
                 </h1>
 
-                <VerifiedBadge
-                  size={22}
-                  className="pt-2"
-                />
+                <VerifiedBadge size={22} className="pt-2" />
               </div>
 
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                {profileUser.handle}
+                @{user?.email}
               </p>
             </div>
           </div>
@@ -103,43 +98,25 @@ export default function Profile() {
       {/* BIO + DETAILS */}
       <div className="flex flex-col gap-3 px-1">
         <p className="text-[15px] text-gray-700 dark:text-gray-300">
-          {profileUser.bio}
+          {user?.bio}
         </p>
 
         {/* User Details */}
         <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-500 dark:text-gray-400">
           <span className="flex items-center gap-1.5">
             <MapPin size={14} />
-            San Francisco, CA
+            {user?.location || 'San Francisco, CA'}
           </span>
 
           <span className="flex items-center gap-1.5">
             <LinkIcon size={14} />
-            pulse.app/you.here
+            {user?.website || 'pulse.app/you.here'}
           </span>
 
           <span className="flex items-center gap-1.5">
             <CalendarDays size={14} />
             Joined March 2023
           </span>
-        </div>
-
-        {/* Stats */}
-        <div className="flex gap-6 pt-1">
-          {stats.map((s, i) => (
-            <div key={s.label} className="flex items-baseline gap-1.5">
-              <span
-                ref={el => (statsRef.current[i] = el)}
-                className="font-display text-lg font-bold text-gray-900 dark:text-white"
-              >
-                0
-              </span>
-
-              <span className="text-sm text-gray-500 dark:text-gray-400">
-                {s.label}
-              </span>
-            </div>
-          ))}
         </div>
       </div>
 

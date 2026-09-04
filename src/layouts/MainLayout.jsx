@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from 'react-router'
+import { Outlet, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'motion/react'
 import Navbar from '../components/navbar/Navbar'
 import Sidebar from '../components/sidebar/Sidebar'

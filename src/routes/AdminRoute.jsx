@@ -1,8 +1,6 @@
-
-import { Navigate, Outlet, useLocation } from "react-router";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { ShieldAlert, LoaderCircle } from "lucide-react";
-
-import { useAuth } from "../hooks/useAuth";
+import useAuth from "../hooks/useAuth";
 
 const AdminRoute = () => {
   const { user, loading } = useAuth();

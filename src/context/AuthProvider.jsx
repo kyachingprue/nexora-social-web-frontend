@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router";
-
+import { useNavigate } from "react-router-dom";
 import {
   GoogleAuthProvider,
   signInWithPopup,
@@ -29,10 +28,14 @@ const AuthProvider = ({ children }) => {
 
      console.log('👤 CURRENT USER RESPONSE:', response)
 
-     const currentUser =
-       response?.data?.user ?? response?.data ?? response?.user
+     const currentUser = response?.data?.data
 
      console.log('✅ CURRENT USER:', currentUser)
+
+     if (!currentUser) {
+       setUser(null)
+       return null
+     }
 
      setUser(currentUser)
 
@@ -44,6 +47,7 @@ const AuthProvider = ({ children }) => {
      )
 
      setUser(null)
+
      return null
    }
  }, [])
@@ -107,37 +111,41 @@ const AuthProvider = ({ children }) => {
   const googleLogin = async () => {
     try {
       // 1. Firebase Google login
-      const result = await signInWithPopup(
-        auth,
-        googleProvider
-      );
+      const result = await signInWithPopup(auth, googleProvider)
 
-      const firebaseUser = result.user;
+      const firebaseUser = result.user
 
       // 2. Get Firebase ID token
-      const firebaseToken =
-        await firebaseUser.getIdToken();
+      const firebaseToken = await firebaseUser.getIdToken()
 
       // 3. Send Firebase token to backend
       const response = await api.post('/api/auth/google', {
         idToken: firebaseToken
       })
 
-      const loggedInUser =
-        response.data?.user ?? response.data;
+      console.log('Google API response:', response.data)
 
-      setUser(loggedInUser);
+      const loggedInUser = response.data?.data?.user
 
-      return response.data;
+      if (!loggedInUser) {
+        throw new Error('Google user data not found')
+      }
+
+      console.log('Google logged in user:', loggedInUser)
+      console.log('Google avatar:', loggedInUser.avatar)
+
+      setUser(loggedInUser)
+
+      return loggedInUser
     } catch (error) {
       console.error(
-        "Google login error:",
+        'Google login error:',
         error.response?.data || error.message
-      );
+      )
 
-      throw error;
+      throw error
     }
-  };
+  }
 
   // --------------------------------------------------
   // Verify Email
@@ -195,28 +203,20 @@ const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      // Backend logout
       await api.post('/api/auth/logout')
     } catch (error) {
-      console.error(
-        "Backend logout error:",
-        error.response?.data || error.message
-      );
+      console.error('Logout error:', error.response?.data || error.message)
     } finally {
-      // Firebase logout
       try {
-        await firebaseSignOut(auth);
+        await firebaseSignOut(auth)
       } catch (error) {
-        console.error(
-          "Firebase logout error:",
-          error.response?.data || error.message
-        );
+        console.error('Firebase logout error:', error.message)
       }
 
-      setUser(null);
-      navigate("/login");
+      setUser(null)
+      navigate('/login', { replace: true })
     }
-  };
+  }
 
   // --------------------------------------------------
   // Initialize backend authentication
@@ -249,17 +249,14 @@ const AuthProvider = ({ children }) => {
   const authInfo = {
     user,
     loading,
-
     register,
     login,
     googleLogin,
     logout,
     verifyEmail,
     resendVerificationEmail,
-
     forgotPassword,
     resetPassword,
-
     refreshToken,
     getCurrentUser,
   };

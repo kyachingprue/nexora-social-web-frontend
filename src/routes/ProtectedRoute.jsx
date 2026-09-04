@@ -1,25 +1,17 @@
+import { LoaderCircle } from "lucide-react"
+import { Navigate, Outlet, useLocation } from "react-router-dom"
+import useAuth from "../hooks/useAuth"
 
-import { Navigate, useLocation } from "react-router";
-import { LoaderCircle } from "lucide-react";
+const ProtectedRoute = () => {
+  const { user, loading } = useAuth()
+  const location = useLocation()
 
-import useAuth from "../hooks/useAuth";
-
-const ProtectedRoute = ({children}) => {
-  const { user, loading } = useAuth();
-  const location = useLocation();
-
-  // ================================
-  // Checking authentication
-  // ================================
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-gray-50 dark:bg-gray-950">
         <div className="flex flex-col items-center gap-4">
           <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-500 shadow-lg shadow-sky-500/20">
-            <LoaderCircle
-              size={28}
-              className="animate-spin text-white"
-            />
+            <LoaderCircle size={28} className="animate-spin text-white" />
           </div>
 
           <div className="text-center">
@@ -33,29 +25,14 @@ const ProtectedRoute = ({children}) => {
           </div>
         </div>
       </div>
-    );
+    )
   }
 
-  // ================================
-  // User is not authenticated
-  // ================================
   if (!user) {
-    return (
-      <Navigate
-        to="/login"
-        replace
-        state={{
-          from: location,
-        }}
-      />
-    );
+    return <Navigate to="/login" replace state={{ from: location }} />
   }
 
-  // ================================
-  // User is authenticated
-  // ================================
-  return children;
-};
+  return <Outlet />
+}
 
 export default ProtectedRoute;
-

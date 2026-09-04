@@ -1,11 +1,24 @@
-import { Bell, Lock, Palette, User } from 'lucide-react'
-
+import { Bell, Lock, Palette, User, LogOut, LoaderCircle } from 'lucide-react'
 import { useTheme } from '../../context/ThemeContext'
 import { Card, CardContent, CardHeader, CardTitle } from '../../ui/card'
 import ThemeToggle from '../../components/navbar/ThemeToggle'
+import { useState } from 'react'
+import useAuth from '../../hooks/useAuth'
 
 export default function Settings() {
   const { theme } = useTheme()
+  const { logout } = useAuth()
+  const [loggingOut, setLoggingOut] = useState(false)
+
+  const handleLogout = async () => {
+    try {
+      setLoggingOut(true)
+      await logout()
+    } catch (error) {
+      console.error('Logout failed:', error)
+      setLoggingOut(false)
+    }
+  }
 
   return (
     <div className="flex flex-col gap-4">
@@ -236,19 +249,45 @@ export default function Settings() {
           >
             Change password
           </button>
-
           <button
             type="button"
             className="text-left text-gray-700 transition-colors hover:text-violet-600 dark:text-gray-300 dark:hover:text-violet-400"
           >
             Download your data
           </button>
-
           <button
             type="button"
             className="text-left text-red-600 transition-opacity hover:opacity-70 dark:text-red-400"
           >
             Deactivate account
+          </button>
+
+          <button
+            type="button"
+            onClick={handleLogout}
+            disabled={loggingOut}
+            className="group relative w-44 flex items-center gap-3 overflow-hidden rounded-xl border border-red-200 bg-white px-4 py-2 text-sm font-semibold text-red-600 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-red-300 hover:bg-red-50 hover:shadow-lg hover:shadow-red-500/10 disabled:cursor-not-allowed disabled:opacity-70 dark:border-red-900/50 dark:bg-gray-900 dark:text-red-400 dark:hover:border-red-800 dark:hover:bg-red-950/40"
+          >
+            {/* Hover background */}
+            <span
+              className="absolute inset-0 -translate-x-full bg-linear-to-r from-red-500 to-rose-500 transition-transform duration-300 group-hover:translate-x-0"/>
+
+            {/* Icon */}
+            <span className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-red-100 transition-all duration-300 group-hover:bg-white/20 group-hover:text-white dark:bg-red-950 dark:group-hover:bg-white/20">
+              {loggingOut ? (
+                <LoaderCircle size={18} className="animate-spin" />
+              ) : (
+                <LogOut
+                  size={18}
+                  className="transition-transform duration-300 group-hover:translate-x-0.5"
+                />
+              )}
+            </span>
+
+            {/* Text */}
+            <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
+              {loggingOut ? 'Logging out...' : 'Log out'}
+            </span>
           </button>
         </CardContent>
       </Card>

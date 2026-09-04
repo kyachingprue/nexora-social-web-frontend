@@ -1,4 +1,4 @@
-import { NavLink } from "react-router";
+import { NavLink } from "react-router-dom";
 import { Home, Compass, PlusCircle, Settings, User } from "lucide-react";
 import { cn } from "../../lib/utils";
 

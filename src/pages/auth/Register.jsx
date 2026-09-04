@@ -18,6 +18,7 @@ import {
 import { FaGoogle } from 'react-icons/fa6'
 
 import useAuth from '../../hooks/useAuth'
+import toast from 'react-hot-toast'
 
 const Register = () => {
   const navigate = useNavigate()
@@ -65,6 +66,7 @@ const onSubmit = async data => {
     })
 
     console.log('Registration successful:', response)
+    toast.success('Account created successfully! 🎉')
 
     // Registration successful হলে সরাসরি
     // email verification page-এ পাঠাবে।
@@ -98,7 +100,7 @@ const onSubmit = async data => {
       setGoogleLoading(true)
 
       await googleLogin()
-
+      toast.success('Account created successfully! 🎉')
       navigate('/')
     } catch (error) {
       console.error('Google signup failed:', error)

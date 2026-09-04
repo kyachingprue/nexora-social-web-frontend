@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import {
   Eye,
@@ -13,13 +13,12 @@ import {
 } from 'lucide-react'
 
 import { FaGoogle } from 'react-icons/fa6'
-
+import toast from 'react-hot-toast'
 import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
   const navigate = useNavigate()
   const { login, googleLogin } = useAuth()
-
   const [showPassword, setShowPassword] = useState(false)
   const [serverError, setServerError] = useState('')
   const [googleLoading, setGoogleLoading] = useState(false)
@@ -48,7 +47,7 @@ const Login = () => {
         email: data.email,
         password: data.password
       })
-
+      toast.success('Account Login successfully! 🎉')
       navigate('/')
     } catch (error) {
       console.error('Login failed:', error)
@@ -72,7 +71,7 @@ const Login = () => {
       setGoogleLoading(true)
 
       await googleLogin()
-
+      toast.success('Account Login successfully! 🎉')
       navigate('/')
     } catch (error) {
       console.error('Google login failed:', error)

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router'
+import { Link, useNavigate } from 'react-router-dom'
 import {
   ArrowLeft,
   CheckCircle2,
@@ -11,7 +11,7 @@ import {
 
 import useAuth from '../../hooks/useAuth'
 
-const ForgotPassword = () => {
+const ForgetPassword = () => {
   const navigate = useNavigate()
 
   const { forgotPassword } = useAuth()
@@ -418,5 +418,5 @@ const ForgotPassword = () => {
   )
 }
 
-export default ForgotPassword
+export default ForgetPassword
 
