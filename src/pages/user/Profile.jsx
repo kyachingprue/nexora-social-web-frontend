@@ -1,15 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "motion/react";
-import { CalendarDays, Link as LinkIcon, MapPin, Settings } from "lucide-react";
+import { BriefcaseBusiness, Cake, CalendarDays, GraduationCap, Link as LinkIcon, MapPin, Settings, VenusAndMars } from "lucide-react";
 import { posts } from '../../data/fakeData'
 import useAuth from '../../hooks/useAuth'
 import { VerifiedBadge } from "../../ui/verified-badge";
 import { Button } from "../../ui/button";
+import EditProfileModal from '../../components/profile/EditProfileModel';
 
 
 export default function Profile() {
   const [tab, setTab] = useState("posts");
+  const [editProfileOpen, setEditProfileOpen] = useState(false)
   const { user, loading } = useAuth()
+  const [profileUser, setProfileUser] = useState(user)
+
+  console.log('user information', user)
+  useEffect(() => {
+    if (user) {
+      setProfileUser(user)
+    }
+  }, [user])
 
   if (loading) {
     return (
@@ -31,10 +41,10 @@ export default function Profile() {
         <div className="relative h-44 overflow-hidden rounded-xl bg-linear-to-br from-violet-600 via-purple-600 to-indigo-600 sm:h-60 lg:h-80">
           <img
             src={
-              user?.coverImage ||
+              profileUser?.coverImage ||
               'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1600&q=80'
             }
-            alt={`${user?.name} cover`}
+            alt={`${profileUser?.name} cover`}
             className="h-full w-full object-cover"
           />
 
@@ -52,12 +62,12 @@ export default function Profile() {
               <div className="h-28 w-28 rounded-full border border-white bg-white p-0.75 shadow-lg dark:border dark:bg-linear-to-br dark:from-cyan-300 dark:via-blue-300 dark:to-fuchsia-300">
                 <img
                   src={
-                    user?.avatar ||
+                    profileUser?.avatar ||
                     `https://ui-avatars.com/api/?name=${encodeURIComponent(
-                      user?.name
+                      profileUser?.name || ''
                     )}&background=0ea5e9&color=fff&size=256`
                   }
-                  alt={user?.name}
+                  alt={profileUser?.name}
                   loading="lazy"
                   className="h-full w-full rounded-full object-cover dark:bg-gray-950"
                 />
@@ -78,7 +88,7 @@ export default function Profile() {
               </div>
 
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                @{user?.email}
+                @{profileUser?.username}
               </p>
             </div>
           </div>
@@ -86,9 +96,8 @@ export default function Profile() {
           {/* Edit Profile */}
           <Button
             variant="outline"
-            className="w-fit gap-2 border-gray-200 bg-white text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:border-gray-700
-          dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800
-          dark:hover:text-white"
+            onClick={() => setEditProfileOpen(true)}
+            className="w-fit gap-2 border-gray-200 bg-white text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-white"
           >
             <Settings size={16} />
             Edit profile
@@ -97,27 +106,104 @@ export default function Profile() {
       </div>
 
       {/* BIO + DETAILS */}
-      <div className="flex flex-col gap-3 px-1">
-        <p className="text-[15px] text-gray-700 dark:text-gray-300">
-          {user?.bio}
+      <div className="flex flex-col gap-4 px-1">
+        {/* Bio */}
+        <p className="text-[15px] leading-6 text-gray-700 bg-gray-200 dark:bg-gray-800 rounded-xl p-2 dark:text-gray-300">
+          {profileUser?.bio || 'No bio added yet.'}
         </p>
 
         {/* User Details */}
-        <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-500 dark:text-gray-400">
-          <span className="flex items-center gap-1.5">
-            <MapPin size={14} />
-            {user?.location || 'San Francisco, CA'}
-          </span>
+        <div className="grid grid-cols-1 gap-2.5 text-sm sm:grid-cols-2">
+          {/* Location */}
+          {profileUser?.location && (
+            <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
+              <MapPin
+                size={15}
+                className="shrink-0 text-gray-400 dark:text-gray-500"
+              />
+              <span className="truncate">{profileUser?.location}</span>
+            </div>
+          )}
 
-          <span className="flex items-center gap-1.5">
-            <LinkIcon size={14} />
-            {user?.website || 'pulse.app/you.here'}
-          </span>
+          {/* Website */}
+          {profileUser?.website && (
+            <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
+              <LinkIcon
+                size={15}
+                className="shrink-0 text-gray-400 dark:text-gray-500"
+              />
+              <a
+                href={profileUser?.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="truncate transition-colors hover:text-blue-500"
+              >
+                {profileUser?.website}
+              </a>
+            </div>
+          )}
 
-          <span className="flex items-center gap-1.5">
-            <CalendarDays size={14} />
-            Joined March 2023
-          </span>
+          {/* Company */}
+          {profileUser?.company && (
+            <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
+              <BriefcaseBusiness
+                size={15}
+                className="shrink-0 text-gray-400 dark:text-gray-500"
+              />
+              <span className="truncate">Works at {profileUser?.company}</span>
+            </div>
+          )}
+
+          {/* Education */}
+          {profileUser?.education && (
+            <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
+              <GraduationCap
+                size={15}
+                className="shrink-0 text-gray-400 dark:text-gray-500"
+              />
+              <span className="truncate">
+                Studied at {profileUser?.education}
+              </span>
+            </div>
+          )}
+
+          {/* Birthday */}
+          {profileUser?.birthday && (
+            <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
+              <Cake
+                size={15}
+                className="shrink-0 text-gray-400 dark:text-gray-500"
+              />
+              <span>
+                Born{' '}
+                {new Date(profileUser.birthday).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
+              </span>
+            </div>
+          )}
+
+          {/* Gender */}
+          {profileUser?.gender && (
+            <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
+              <VenusAndMars
+                size={15}
+                className="shrink-0 text-gray-400 dark:text-gray-500"
+              />
+              <span>{profileUser?.gender}</span>
+            </div>
+          )}
+
+          {/* Joined Date */}
+          <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
+            <CalendarDays
+              size={15}
+              className="shrink-0 text-gray-400 dark:text-gray-500"
+            />
+            <span>Joined March 2023</span>
+          </div>
         </div>
       </div>
 
@@ -155,7 +241,6 @@ export default function Profile() {
           </button>
         ))}
       </div>
-
       {/* POSTS GRID */}
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:gap-3">
         {posts.map((p, i) => (
@@ -174,6 +259,14 @@ export default function Profile() {
           />
         ))}
       </div>
+      <EditProfileModal
+        user={profileUser}
+        open={editProfileOpen}
+        onClose={() => setEditProfileOpen(false)}
+        onUpdated={updatedUser => {
+          setProfileUser(updatedUser)
+        }}
+      />
     </div>
   )
 }

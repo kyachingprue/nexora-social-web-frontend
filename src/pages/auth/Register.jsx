@@ -351,7 +351,7 @@ const onSubmit = async data => {
               type="button"
               onClick={handleGoogleSignup}
               disabled={googleLoading || isSubmitting}
-              className="group flex w-full items-center justify-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-white/30 dark:text-slate-200 dark:hover:bg-white/60"
+              className="group flex w-full items-center justify-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-white/3 dark:text-slate-200 dark:hover:bg-white/6"
             >
               {googleLoading ? (
                 <Loader2 size={19} className="animate-spin" />
@@ -405,7 +405,7 @@ const onSubmit = async data => {
                     type="text"
                     autoComplete="name"
                     placeholder="Your full name"
-                    className={`w-full rounded-xl border bg-slate-50 py-3.5 pl-11 pr-4 text-sm outline-none transition placeholder:text-slate-400 dark:bg-white/30 ${
+                    className={`w-full rounded-xl border bg-slate-50 py-3.5 pl-11 pr-4 text-sm outline-none transition placeholder:text-slate-400 dark:bg-white/3 ${
                       errors.name
                         ? 'border-red-400 focus:ring-4 focus:ring-red-500/10'
                         : 'border-slate-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 dark:border-white/10'
@@ -451,7 +451,7 @@ const onSubmit = async data => {
                     type="text"
                     autoComplete="username"
                     placeholder="choose_username"
-                    className={`w-full rounded-xl border bg-slate-50 py-3.5 pl-11 pr-4 text-sm outline-none transition placeholder:text-slate-400 dark:bg-white/30 ${
+                    className={`w-full rounded-xl border bg-slate-50 py-3.5 pl-11 pr-4 text-sm outline-none transition placeholder:text-slate-400 dark:bg-white/3 ${
                       errors.username
                         ? 'border-red-400 focus:ring-4 focus:ring-red-500/10'
                         : 'border-slate-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 dark:border-white/10'
@@ -502,7 +502,7 @@ const onSubmit = async data => {
                     type="email"
                     autoComplete="email"
                     placeholder="you@example.com"
-                    className={`w-full rounded-xl border bg-slate-50 py-3.5 pl-11 pr-4 text-sm outline-none transition placeholder:text-slate-400 dark:bg-white/30 ${
+                    className={`w-full rounded-xl border bg-slate-50 py-3.5 pl-11 pr-4 text-sm outline-none transition placeholder:text-slate-400 dark:bg-white/3 ${
                       errors.email
                         ? 'border-red-400 focus:ring-4 focus:ring-red-500/10'
                         : 'border-slate-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 dark:border-white/10'
@@ -544,7 +544,7 @@ const onSubmit = async data => {
                     type={showPassword ? 'text' : 'password'}
                     autoComplete="new-password"
                     placeholder="Create a strong password"
-                    className={`w-full rounded-xl border bg-slate-50 py-3.5 pl-11 pr-12 text-sm outline-none transition placeholder:text-slate-400 dark:bg-white/30 ${
+                    className={`w-full rounded-xl border bg-slate-50 py-3.5 pl-11 pr-12 text-sm outline-none transition placeholder:text-slate-400 dark:bg-white/3 ${
                       errors.password
                         ? 'border-red-400 focus:ring-4 focus:ring-red-500/10'
                         : 'border-slate-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 dark:border-white/10'
@@ -604,7 +604,7 @@ const onSubmit = async data => {
                     type={showConfirmPassword ? 'text' : 'password'}
                     autoComplete="new-password"
                     placeholder="Confirm your password"
-                    className={`w-full rounded-xl border bg-slate-50 py-3.5 pl-11 pr-12 text-sm outline-none transition placeholder:text-slate-400 dark:bg-white/30 ${
+                    className={`w-full rounded-xl border bg-slate-50 py-3.5 pl-11 pr-12 text-sm outline-none transition placeholder:text-slate-400 dark:bg-white/3 ${
                       errors.confirmPassword
                         ? 'border-red-400 focus:ring-4 focus:ring-red-500/10'
                         : 'border-slate-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 dark:border-white/10'

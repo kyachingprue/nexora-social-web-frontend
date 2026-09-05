@@ -6,7 +6,7 @@ const userService = {
   // ================================
 
   getProfile: async () => {
-    const response = await api.get('/users/profile')
+    const response = await api.get('/api/users/profile')
 
     return response.data
   },
@@ -16,7 +16,7 @@ const userService = {
   // ================================
 
   getUserById: async userId => {
-    const response = await api.get(`/users/${userId}`)
+    const response = await api.get(`/api/users/${userId}`)
 
     return response.data
   },
@@ -27,7 +27,7 @@ const userService = {
 
   updateProfile: async userData => {
     const response = await api.patch(
-      '/users/profile',
+      '/api/users/profile',
       userData
     )
 
@@ -40,7 +40,7 @@ const userService = {
 
   updateAvatar: async formData => {
     const response = await api.patch(
-      '/users/profile/avatar',
+      '/api/users/profile/avatar',
       formData,
       {
         headers: {
@@ -58,7 +58,7 @@ const userService = {
 
   updateCoverImage: async formData => {
     const response = await api.patch(
-      '/users/profile/cover',
+      '/api/users/profile/cover',
       formData,
       {
         headers: {
@@ -75,7 +75,7 @@ const userService = {
   // ================================
 
   searchUsers: async (query, params = {}) => {
-    const response = await api.get('/users/search', {
+    const response = await api.get('/api/users/search', {
       params: {
         search: query,
         ...params
@@ -90,7 +90,7 @@ const userService = {
   // ================================
 
   getUsers: async (params = {}) => {
-    const response = await api.get('/users', {
+    const response = await api.get('/api/users', {
       params
     })
 
@@ -103,7 +103,7 @@ const userService = {
 
   followUser: async userId => {
     const response = await api.post(
-      `/users/${userId}/follow`
+      `/api/users/${userId}/follow`
     )
 
     return response.data
@@ -115,7 +115,7 @@ const userService = {
 
   unfollowUser: async userId => {
     const response = await api.delete(
-      `/users/${userId}/follow`
+      `/api/users/${userId}/follow`
     )
 
     return response.data
@@ -127,7 +127,7 @@ const userService = {
 
   getFollowers: async (userId, params = {}) => {
     const response = await api.get(
-      `/users/${userId}/followers`,
+      `/api/users/${userId}/followers`,
       {
         params
       }
@@ -142,7 +142,7 @@ const userService = {
 
   getFollowing: async (userId, params = {}) => {
     const response = await api.get(
-      `/users/${userId}/following`,
+      `/api/users/${userId}/following`,
       {
         params
       }
@@ -157,7 +157,7 @@ const userService = {
 
   getSuggestedUsers: async (params = {}) => {
     const response = await api.get(
-      '/users/suggestions',
+      '/api/users/suggestions',
       {
         params
       }
@@ -172,7 +172,7 @@ const userService = {
 
   getFollowStatus: async userId => {
     const response = await api.get(
-      `/users/${userId}/follow-status`
+      `/api/users/${userId}/follow-status`
     )
 
     return response.data
@@ -184,7 +184,7 @@ const userService = {
 
   blockUser: async userId => {
     const response = await api.post(
-      `/users/${userId}/block`
+      `/api/users/${userId}/block`
     )
 
     return response.data
@@ -196,7 +196,7 @@ const userService = {
 
   unblockUser: async userId => {
     const response = await api.delete(
-      `/users/${userId}/block`
+      `/api/users/${userId}/block`
     )
 
     return response.data
@@ -208,7 +208,7 @@ const userService = {
 
   getBlockedUsers: async (params = {}) => {
     const response = await api.get(
-      '/users/blocked',
+      '/api/users/blocked',
       {
         params
       }
@@ -223,7 +223,7 @@ const userService = {
 
   deleteAccount: async password => {
     const response = await api.delete(
-      '/users/account',
+      '/api/users/account',
       {
         data: {
           password
