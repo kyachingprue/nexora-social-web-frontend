@@ -120,40 +120,18 @@ const AdminLayout = () => {
           DESKTOP SIDEBAR
       ====================================================== */}
       <aside
-        className={`
-          fixed
-          left-0
-          top-0
-          z-50
-          hidden
-          h-screen
-          border-r
-          border-gray-200
-          bg-white
-          transition-all
-          duration-300
-          ease-in-out
-          dark:border-gray-800
-          dark:bg-gray-900
-          lg:block
-
+        className={`fixed left-0 top-0 z-50 hidden h-screen border-r border-gray-200 bg-white transition-all duration-300 ease-in-out dark:border-gray-800 dark:bg-gray-900 lg:block
           ${desktopSidebarCollapsed ? "w-20.5" : "w-64"}
         `}
       >
         {/* Logo */}
         <div
-          className={`
-            flex
-            h-20
-            items-center
-            border-b
-            border-gray-200
-            dark:border-gray-800
+          className={`flex h-20 items-center border-b border-gray-200 dark:border-gray-800
             ${desktopSidebarCollapsed ? "justify-center" : "px-5"}
           `}
         >
           <NavLink
-            to="/admin/dashboard"
+            to="/"
             className="flex items-center gap-3"
           >
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sky-500 text-white shadow-lg shadow-sky-500/20">

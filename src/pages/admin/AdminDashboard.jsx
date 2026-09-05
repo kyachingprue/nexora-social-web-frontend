@@ -516,7 +516,7 @@ const AdminDashboard = () => {
 
             {/* Chart */}
 
-            <div className="relative h-[280px]">
+            <div className="relative h-70">
 
               {/* Grid lines */}
 
@@ -746,7 +746,7 @@ const AdminDashboard = () => {
                       p-3
                       transition
                       hover:bg-slate-50
-                      dark:hover:bg-white/[0.03]
+                      dark:hover:bg-white/30
                     "
                   >
 
@@ -919,7 +919,7 @@ const AdminDashboard = () => {
 
             <div className="overflow-x-auto">
 
-              <table className="w-full min-w-[600px]">
+              <table className="w-full min-w-150">
 
                 <thead>
                   <tr className="border-b border-slate-100 text-left dark:border-white/5">

@@ -9,12 +9,8 @@ import {
   Save,
   RotateCcw,
   CheckCircle2,
-  Mail,
-  Smartphone,
   Lock,
   Eye,
-  UserPlus,
-  Image,
   Flag,
   KeyRound,
   Clock3,
@@ -114,7 +110,7 @@ const SelectInput = ({ value, onChange, children }) => {
     <select
       value={value}
       onChange={e => onChange(e.target.value)}
-      className="w-full min-w-[180px] rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-700 outline-none transition focus:border-slate-400 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200 dark:focus:border-slate-500"
+      className="w-full min-w-45 rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-700 outline-none transition focus:border-slate-400 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200 dark:focus:border-slate-500"
     >
       {children}
     </select>
@@ -132,7 +128,7 @@ const TextInput = ({ value, onChange, placeholder, type = 'text' }) => {
       value={value}
       onChange={e => onChange(e.target.value)}
       placeholder={placeholder}
-      className="w-full min-w-[220px] rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-slate-400 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200 dark:focus:border-slate-500"
+      className="w-full min-w-55 rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-slate-400 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200 dark:focus:border-slate-500"
     />
   )
 }
@@ -311,7 +307,7 @@ const AdminSettings = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 p-4 sm:p-6 lg:p-8 dark:bg-slate-950">
-      <div className="mx-auto max-w-[1400px]">
+      <div className="mx-auto max-w-350">
         {/* =================================================
             Header
         ================================================= */}
@@ -496,7 +492,7 @@ const AdminSettings = () => {
                       value={siteDescription}
                       onChange={e => setSiteDescription(e.target.value)}
                       rows={3}
-                      className="w-full min-w-[220px] resize-none rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-slate-400 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200 dark:focus:border-slate-500 sm:min-w-[320px]"
+                      className="w-full min-w-55 resize-none rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-slate-400 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200 dark:focus:border-slate-500 sm:min-w-[320px]"
                     />
                   </SettingRow>
 

@@ -31,6 +31,7 @@ import AdminPosts from '../pages/admin/AdminPosts'
 import AdminReports from '../pages/admin/AdminReports'
 import AdminAnalytics from '../pages/admin/AdminAnalytics'
 import AdminSettings from '../pages/admin/AdminSettings'
+import NotFound from '../pages/not-found/NotFound'
 
 const router = createBrowserRouter([
   {
@@ -152,6 +153,10 @@ const router = createBrowserRouter([
         ]
       }
     ]
+  },
+  {
+    path: "*",
+    element:<NotFound/>
   }
 ])
 

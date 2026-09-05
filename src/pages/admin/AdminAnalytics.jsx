@@ -499,7 +499,7 @@ const AdminAnalytics = () => {
               }
             />
 
-            <div className="flex h-[300px] items-end gap-2 overflow-hidden pt-6 sm:gap-4">
+            <div className="flex h-75 items-end gap-2 overflow-hidden pt-6 sm:gap-4">
               {analyticsData.userGrowth.map(item => {
                 const value =
                   selectedMetric === 'users' ? item.users : item.newUsers
@@ -516,7 +516,7 @@ const AdminAnalytics = () => {
                   >
                     <div className="relative flex h-full w-full items-end justify-center">
                       <div
-                        className="w-full max-w-[46px] rounded-t-xl bg-slate-900 transition-all duration-500 group-hover:opacity-80 dark:bg-slate-200"
+                        className="w-full max-w-11.5 rounded-t-xl bg-slate-900 transition-all duration-500 group-hover:opacity-80 dark:bg-slate-200"
                         style={{
                           height: `${Math.max(height, 4)}%`
                         }}
@@ -736,7 +736,7 @@ const AdminAnalytics = () => {
 
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             <div className="lg:col-span-2">
-              <div className="flex h-[280px] items-end gap-3 sm:gap-6">
+              <div className="flex h-70 items-end gap-3 sm:gap-6">
                 {analyticsData.weeklyActivity.map(item => {
                   const height = (item.likes / maxActivity) * 100
 
@@ -747,7 +747,7 @@ const AdminAnalytics = () => {
                     >
                       <div className="relative flex h-full w-full items-end justify-center">
                         <div
-                          className="w-full max-w-[48px] rounded-t-xl bg-slate-900 transition-all duration-500 group-hover:opacity-75 dark:bg-slate-200"
+                          className="w-full max-w-12 rounded-t-xl bg-slate-900 transition-all duration-500 group-hover:opacity-75 dark:bg-slate-200"
                           style={{
                             height: `${Math.max(height, 5)}%`
                           }}
@@ -828,18 +828,18 @@ const AdminAnalytics = () => {
             icon={Clock3}
           />
 
-          <div className="flex h-[230px] items-end gap-2 overflow-x-auto pb-1 sm:gap-3">
+          <div className="flex h-57.5 items-end gap-2 overflow-x-auto pb-1 sm:gap-3">
             {analyticsData.activityHours.map(item => {
               const height = (item.value / maxHourActivity) * 100
 
               return (
                 <div
                   key={item.time}
-                  className="group flex h-full min-w-[42px] flex-1 flex-col items-center justify-end gap-3"
+                  className="group flex h-full min-w-10.5 flex-1 flex-col items-center justify-end gap-3"
                 >
                   <div className="relative flex h-full w-full items-end justify-center">
                     <div
-                      className="w-full max-w-[30px] rounded-t-lg bg-slate-900 transition-all duration-500 group-hover:opacity-75 dark:bg-slate-200"
+                      className="w-full max-w-7.5 rounded-t-lg bg-slate-900 transition-all duration-500 group-hover:opacity-75 dark:bg-slate-200"
                       style={{
                         height: `${Math.max(height, 5)}%`
                       }}
@@ -902,7 +902,7 @@ const AdminAnalytics = () => {
           {/* Desktop Table */}
 
           <div className="hidden overflow-x-auto md:block">
-            <table className="w-full min-w-[900px]">
+            <table className="w-full min-w-225">
               <thead>
                 <tr className="border-b border-slate-100 text-left dark:border-slate-800">
                   <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wider text-slate-400">
@@ -942,7 +942,7 @@ const AdminAnalytics = () => {
                     className="border-b border-slate-100 transition hover:bg-slate-50 dark:border-slate-800 dark:hover:bg-slate-800/40"
                   >
                     <td className="px-5 py-4">
-                      <div className="flex min-w-[280px] items-center gap-3">
+                      <div className="flex min-w-70 items-center gap-3">
                         <img
                           src={post.avatar}
                           alt={post.author}

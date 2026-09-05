@@ -15,7 +15,6 @@ import {
   ChevronLeft,
   ChevronRight,
   X,
-  User,
   CalendarDays,
   Flag,
   ExternalLink,
@@ -506,7 +505,7 @@ function PostPreviewModal({ post, onClose }) {
                 <img
                   src={post.media.url}
                   alt="Post media"
-                  className="max-h-[420px] w-full object-cover"
+                  className="max-h-105 w-full object-cover"
                 />
               ) : (
                 <div className="flex h-72 items-center justify-center bg-slate-900">
@@ -946,7 +945,7 @@ export default function AdminPosts() {
           ================================================= */}
 
           <div className="hidden overflow-x-auto lg:block">
-            <table className="w-full min-w-[1150px]">
+            <table className="w-full min-w-287.5">
               <thead>
                 <tr className="border-b border-slate-200 bg-slate-50/70 dark:border-slate-800 dark:bg-slate-800/30">
                   <th className="px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
@@ -986,7 +985,7 @@ export default function AdminPosts() {
                     className="group border-b border-slate-100 transition hover:bg-slate-50/70 dark:border-slate-800/80 dark:hover:bg-slate-800/30"
                   >
                     {/* Post */}
-                    <td className="max-w-[460px] px-5 py-4">
+                    <td className="max-w-115 px-5 py-4">
                       <div className="flex gap-3">
                         <img
                           src={post.author.avatar}

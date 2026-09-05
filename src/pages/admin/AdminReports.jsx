@@ -20,7 +20,6 @@ import {
   ExternalLink,
   FileText,
   UserRound,
-  Ban,
   CircleDot
 } from 'lucide-react'
 
@@ -932,7 +931,7 @@ export default function AdminReports() {
           ================================================= */}
 
           <div className="hidden overflow-x-auto lg:block">
-            <table className="w-full min-w-[1200px]">
+            <table className="w-full min-w-300">
               <thead>
                 <tr className="border-b border-slate-200 bg-slate-50/70 dark:border-slate-800 dark:bg-slate-800/30">
                   <th className="px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
@@ -972,7 +971,7 @@ export default function AdminReports() {
                     className="group border-b border-slate-100 transition hover:bg-slate-50/70 dark:border-slate-800/80 dark:hover:bg-slate-800/30"
                   >
                     {/* Report */}
-                    <td className="max-w-[410px] px-5 py-4">
+                    <td className="max-w-102.5 px-5 py-4">
                       <div className="flex gap-3">
                         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-red-500/10 text-red-500">
                           <Flag size={17} />

@@ -49,7 +49,7 @@ export default function Navbar() {
         </div>
 
         <div className="ml-auto flex items-center gap-1.5 sm:gap-3">
-          
+
           {/* Admin Dashboard */}
           {user?.role === 'ADMIN' && (
             <button
@@ -59,7 +59,7 @@ export default function Navbar() {
               aria-label="Admin Dashboard"
               title="Admin Dashboard"
             >
-              <LayoutDashboard size={20} strokeWidth={1.8} />
+              <LayoutDashboard size={24} strokeWidth={1.8} />
             </button>
           )}
 
@@ -104,6 +104,7 @@ export default function Navbar() {
                   )}&background=0ea5e9&color=fff&size=256`
                 }
                 alt={user?.name}
+                loading="lazy"
                 className="h-full w-full rounded-full object-cover dark:bg-gray-950"
               />
 

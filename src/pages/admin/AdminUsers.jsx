@@ -406,7 +406,7 @@ function UserDetailsModal({ user, onClose }) {
         className="w-full max-w-lg overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl dark:border-slate-800 dark:bg-slate-900"
         onClick={event => event.stopPropagation()}
       >
-        <div className="relative h-28 bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600">
+        <div className="relative h-28 bg-linear-to-r from-blue-600 via-indigo-600 to-violet-600">
           <button
             onClick={onClose}
             className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur transition hover:bg-white/25"
@@ -761,7 +761,7 @@ export default function AdminUsers() {
 
           {/* Desktop Table */}
           <div className="hidden overflow-x-auto lg:block">
-            <table className="w-full min-w-[1050px]">
+            <table className="w-full min-w-262.5">
               <thead>
                 <tr className="border-b border-slate-200 bg-slate-50/70 dark:border-slate-800 dark:bg-slate-800/30">
                   <th className="px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">

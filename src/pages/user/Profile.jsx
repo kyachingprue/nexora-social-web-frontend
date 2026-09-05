@@ -58,6 +58,7 @@ export default function Profile() {
                     )}&background=0ea5e9&color=fff&size=256`
                   }
                   alt={user?.name}
+                  loading="lazy"
                   className="h-full w-full rounded-full object-cover dark:bg-gray-950"
                 />
               </div>

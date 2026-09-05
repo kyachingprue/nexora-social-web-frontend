@@ -12,6 +12,8 @@ import {
 import { cn } from "../../lib/utils";
 import { Button } from "../../ui/button";
 import useAuth from "../../hooks/useAuth";
+import NewPost from '../post/NewPost';
+import { useState } from "react";
 
 
 const links = [
@@ -25,6 +27,7 @@ const links = [
 
 export default function Sidebar() {
   const { user } = useAuth();
+  const [isNewPostOpen, setIsNewPostOpen] = useState(false)
   return (
     <aside className="sticky top-20 hidden h-[calc(100vh-6rem)] w-full max-w-62 flex-col justify-between lg:flex px-2">
       {/* Navigation */}
@@ -114,6 +117,7 @@ export default function Sidebar() {
         <Button
           variant="gradient"
           size="lg"
+          onClick={() => setIsNewPostOpen(true)}
           className="w-full shadow-lg shadow-violet-500/20"
         >
           <PlusCircle size={18} />
@@ -126,11 +130,12 @@ export default function Sidebar() {
           className="group flex items-center gap-3 rounded-xl p-2.5 transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-800"
         >
           <img
-            src={user?.avatar ||
-                  `https://ui-avatars.com/api/?name=${encodeURIComponent(
-                    user?.name
-                  )}&background=0ea5e9&color=fff&size=256`
-                }
+            src={
+              user?.avatar ||
+              `https://ui-avatars.com/api/?name=${encodeURIComponent(
+                user?.name
+              )}&background=0ea5e9&color=fff&size=256`
+            }
             className="h-10 w-10 shrink-0 rounded-full object-cover ring-2 ring-violet-200 transition-all duration-200 group-hover:ring-violet-500 dark:ring-violet-900 dark:group-hover:ring-violet-400"
           />
 
@@ -144,6 +149,14 @@ export default function Sidebar() {
             </p>
           </div>
         </NavLink>
+
+        <NewPost
+          isOpen={isNewPostOpen}
+          onClose={() => setIsNewPostOpen(false)}
+          onSubmitPost={newPost => {
+            console.log('🚀 NEW POST:', newPost)
+          }}
+        />
       </div>
     </aside>
   )

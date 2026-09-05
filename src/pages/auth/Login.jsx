@@ -11,8 +11,6 @@ import {
   ShieldCheck,
   Sparkles
 } from 'lucide-react'
-
-import { FaGoogle } from 'react-icons/fa6'
 import toast from 'react-hot-toast'
 import useAuth from '../../hooks/useAuth';
 
@@ -121,9 +119,8 @@ const Login = () => {
               Your social world starts here
             </div>
 
-            <h2 className="text-4xl font-extrabold leading-tight tracking-tight xl:text-5xl">
-              Welcome back to your
-              <span className="block text-white/80">social universe.</span>
+            <h2 className="text-4xl font-extrabold font-serif leading-tight tracking-tight xl:text-5xl">
+              Welcome back to your social universe.
             </h2>
 
             <p className="mt-6 text-base leading-7 text-white/75">
@@ -156,10 +153,10 @@ const Login = () => {
             RIGHT - Login Form
         ================================================== */}
 
-        <section className="flex min-h-175 items-center justify-center p-6 sm:p-10 lg:p-12">
+        <section className="flex min-h-175 items-center justify-center p-5 sm:p-8 lg:p-10">
           <div className="w-full max-w-md">
             {/* Mobile logo */}
-            <div className="mb-10 flex items-center gap-3 lg:hidden">
+            <div className="mb-8 flex items-center gap-3 lg:hidden">
               <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-indigo-600 text-white shadow-lg shadow-indigo-500/20">
                 <Sparkles size={22} />
               </div>
@@ -173,12 +170,12 @@ const Login = () => {
             </div>
 
             {/* Heading */}
-            <div className="mb-8">
+            <div className="mb-5">
               <p className="mb-3 text-sm font-semibold text-indigo-600 dark:text-indigo-400">
                 Welcome back 👋
               </p>
 
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              <h2 className="text-3xl font-bold tracking-tight font-serif sm:text-4xl">
                 Sign in to Nexora
               </h2>
 
@@ -207,9 +204,10 @@ const Login = () => {
               {googleLoading ? (
                 <Loader2 size={19} className="animate-spin" />
               ) : (
-                <FaGoogle
-                  size={19}
-                  className="transition-transform group-hover:scale-110"
+                <img
+                  src="https://i.ibb.co.com/JFqzJkGp/google-removebg-preview-1.png"
+                  className="w-5 h-5 transition-transform group-hover:scale-110"
+                  alt="Google Logo"
                 />
               )}
 
@@ -372,7 +370,7 @@ const Login = () => {
             </form>
 
             {/* Register */}
-            <p className="mt-8 text-center text-sm text-slate-500 dark:text-slate-400">
+            <p className="mt-5 text-center text-sm text-slate-500 dark:text-slate-400">
               Don't have an account?{' '}
               <Link
                 to="/register"
@@ -383,7 +381,7 @@ const Login = () => {
             </p>
 
             {/* Security note */}
-            <div className="mt-8 flex items-center justify-center gap-2 text-xs text-slate-400">
+            <div className="mt-5 flex items-center justify-center gap-2 text-xs text-slate-400">
               <ShieldCheck size={14} />
               <span>Secure authentication powered by Nexora</span>
             </div>

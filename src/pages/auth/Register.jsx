@@ -12,10 +12,15 @@ import {
   ShieldCheck,
   User,
   UserRound,
-  Loader2
+  Loader2,
+  TrendingUp,
+  Image as ImageIcon,
+  Globe2,
+  UserPlus,
+  Heart,
+  MessageCircle,
+  Users
 } from 'lucide-react'
-
-import { FaGoogle } from 'react-icons/fa6'
 
 import useAuth from '../../hooks/useAuth'
 import toast from 'react-hot-toast'
@@ -125,63 +130,173 @@ const onSubmit = async data => {
         ================================================== */}
 
         <section className="relative hidden min-h-190 overflow-hidden bg-linear-to-br from-indigo-600 via-violet-600 to-fuchsia-600 p-10 text-white lg:flex lg:flex-col lg:justify-between">
-          {/* Decorative elements */}
+          {/* ================= Decorative Background ================= */}
           <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
           <div className="absolute -bottom-32 -left-20 h-80 w-80 rounded-full bg-fuchsia-300/20 blur-3xl" />
           <div className="absolute left-1/2 top-1/3 h-32 w-32 rounded-full bg-indigo-300/20 blur-3xl" />
 
-          {/* Logo */}
-          <div className="relative z-10 flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15 shadow-lg ring-1 ring-white/20 backdrop-blur-md">
-              <Sparkles size={23} />
+          <div className="absolute right-10 top-32 h-20 w-20 rounded-full border border-white/10 bg-white/5 blur-sm" />
+          <div className="absolute bottom-40 right-24 h-12 w-12 rounded-full bg-white/10 blur-xl" />
+
+          {/* ================= Logo ================= */}
+          <div className="relative z-10 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15 shadow-lg ring-1 ring-white/20 backdrop-blur-md">
+                <Sparkles size={23} />
+              </div>
+
+              <div>
+                <h1 className="text-xl font-bold tracking-tight">Nexora</h1>
+
+                <p className="text-xs text-white/70">
+                  Connect. Share. Discover.
+                </p>
+              </div>
             </div>
 
-            <div>
-              <h1 className="text-xl font-bold tracking-tight">Nexora</h1>
-
-              <p className="text-xs text-white/70">Connect. Share. Discover.</p>
+            {/* Online Community */}
+            <div className="hidden items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-2 text-xs backdrop-blur-md xl:flex">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-300" />
+              24.8K people online
             </div>
           </div>
 
-          {/* Main content */}
-          <div className="relative z-10 max-w-md">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm backdrop-blur-md">
+          {/* ================= Main Content ================= */}
+          <div className="relative z-10 mt-10 max-w-xl">
+            {/* Badge */}
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm shadow-lg backdrop-blur-md">
               <Sparkles size={15} />
               Join the Nexora community
             </div>
 
-            <h2 className="text-4xl font-extrabold leading-tight tracking-tight xl:text-5xl">
-              Create your
-              <span className="block text-white/80">social universe.</span>
+            {/* Heading */}
+            <h2 className="text-4xl font-mono font-extrabold leading-tight tracking-tight xl:text-5xl">
+              Your world.
+              <span className="block text-white/80">Your people.</span>
+              <span className="block">Your universe.</span>
             </h2>
 
-            <p className="mt-6 text-base leading-7 text-white/75">
-              Build meaningful connections, share your journey, discover
-              communities, and express yourself with people around the world.
+            <p className="mt-6 max-w-lg text-base leading-7 text-white/75">
+              Connect with amazing people, share your moments, discover
+              communities, follow your interests, and build meaningful
+              relationships—all in one social universe.
             </p>
 
-            {/* Benefits */}
-            <div className="mt-10 space-y-4">
+            {/* ================= Social Features ================= */}
+            <div className="mt-8 grid max-w-lg grid-cols-2 gap-3">
+              {/* Feature 1 */}
+              <div className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/10 p-3 backdrop-blur-md transition hover:bg-white/15">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/15">
+                  <Users size={17} />
+                </div>
+
+                <div>
+                  <p className="text-sm font-semibold">Communities</p>
+                  <p className="text-[11px] text-white/60">Find your people</p>
+                </div>
+              </div>
+
+              {/* Feature 2 */}
+              <div className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/10 p-3 backdrop-blur-md transition hover:bg-white/15">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/15">
+                  <MessageCircle size={17} />
+                </div>
+
+                <div>
+                  <p className="text-sm font-semibold">Messaging</p>
+                  <p className="text-[11px] text-white/60">Chat in real-time</p>
+                </div>
+              </div>
+
+              {/* Feature 3 */}
+              <div className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/10 p-3 backdrop-blur-md transition hover:bg-white/15">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/15">
+                  <ImageIcon size={17} />
+                </div>
+
+                <div>
+                  <p className="text-sm font-semibold">Stories & Posts</p>
+                  <p className="text-[11px] text-white/60">
+                    Share your moments
+                  </p>
+                </div>
+              </div>
+
+              {/* Feature 4 */}
+              <div className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/10 p-3 backdrop-blur-md transition hover:bg-white/15">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/15">
+                  <TrendingUp size={17} />
+                </div>
+
+                <div>
+                  <p className="text-sm font-semibold">Trending</p>
+                  <p className="text-[11px] text-white/60">
+                    Discover what's hot
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* ================= Benefits ================= */}
+            <div className="mt-8 space-y-3">
               {[
-                'Connect with people who share your interests',
-                'Share photos, stories, and your experiences',
-                'Discover communities and trending content'
-              ].map(item => (
-                <div key={item} className="flex items-center gap-3">
+                {
+                  icon: Heart,
+                  text: 'React, comment, and engage with content you love'
+                },
+                {
+                  icon: UserPlus,
+                  text: 'Follow creators, friends, and people you admire'
+                },
+                {
+                  icon: Globe2,
+                  text: 'Explore conversations from around the world'
+                }
+              ].map(({ icon: Icon, text }) => (
+                <div key={text} className="flex items-center gap-3">
                   <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/15">
-                    <Check size={15} />
+                    <Icon size={14} />
                   </div>
 
-                  <span className="text-sm text-white/80">{item}</span>
+                  <span className="text-sm text-white/75">{text}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Security */}
-          <div className="relative z-10 flex items-center gap-2 text-sm text-white/60">
-            <ShieldCheck size={16} />
-            Secure authentication powered by Nexora
+          {/* ================= Community Stats ================= */}
+          <div className="relative z-10 mt-10 flex flex-wrap items-center gap-6 border-t border-white/10 pt-6">
+            <div>
+              <p className="text-xl font-bold">250K+</p>
+              <p className="text-[11px] text-white/55">Members</p>
+            </div>
+
+            <div className="h-8 w-px bg-white/15" />
+
+            <div>
+              <p className="text-xl font-bold">1.2M+</p>
+              <p className="text-[11px] text-white/55">Posts shared</p>
+            </div>
+
+            <div className="h-8 w-px bg-white/15" />
+
+            <div>
+              <p className="text-xl font-bold">85K+</p>
+              <p className="text-[11px] text-white/55">Communities</p>
+            </div>
+          </div>
+
+          {/* ================= Security ================= */}
+          <div className="relative z-10 mt-6 flex items-center justify-between">
+            <div className="flex items-center gap-2 text-sm text-white/60">
+              <ShieldCheck size={16} />
+              Secure & private social experience
+            </div>
+
+            <div className="hidden items-center gap-1.5 text-xs text-white/50 xl:flex">
+              <Check size={13} />
+              Built for everyone
+            </div>
           </div>
         </section>
 
@@ -241,9 +356,10 @@ const onSubmit = async data => {
               {googleLoading ? (
                 <Loader2 size={19} className="animate-spin" />
               ) : (
-                <FaGoogle
-                  size={19}
-                  className="transition-transform group-hover:scale-110"
+                <img
+                  src="https://i.ibb.co.com/JFqzJkGp/google-removebg-preview-1.png"
+                  className="w-5 h-5 transition-transform group-hover:scale-110"
+                  alt=""
                 />
               )}
 

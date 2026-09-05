@@ -68,7 +68,7 @@ const AdminRoute = () => {
           <button
             type="button"
             onClick={() => {
-              window.location.href = "/home";
+              window.location.href = "/";
             }}
             className="mt-6 w-full rounded-xl bg-sky-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-sky-600 active:scale-[0.98]"
           >
